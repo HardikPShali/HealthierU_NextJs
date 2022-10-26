@@ -46,8 +46,12 @@
 }
 
 .storeIcon {
-  width: 7rem;
+  width: 7.5rem;
   /* margin-right: 15px; */
+}
+
+.storeIcon_marginRight {
+  margin-right: 15px;
 }
 
 .copyrightLinks {
@@ -85,12 +89,12 @@
   width: 45px;
 }
 
-.footIcon svg{
+.footIcon svg {
   color: #fff;
   background: #00d0cc;
   border-radius: 50%;
   padding: 4px;
-  font-size: 30px!important;
+  font-size: 30px !important;
   margin: 2px 0 0 10px;
 }
 

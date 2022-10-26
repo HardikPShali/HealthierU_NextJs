@@ -51,7 +51,11 @@ const Footer = () => {
                   src="/images/icons/appstore.png"
                   alt=""
                   // id="store-icon"
-                  className={cls(styles.storeIcon, styles.imageMobileRespv)}
+                  className={cls(
+                    styles.storeIcon,
+                    styles.storeIcon_marginRight,
+                    styles.imageMobileRespv
+                  )}
                   width={150}
                   height={50}
                 />
@@ -107,8 +111,8 @@ const Footer = () => {
                 >
                   <Image
                     src="/images/icons/facebook.png"
-                    width={30}
-                    height={30}
+                    width={40}
+                    height={40}
                     alt=""
                   />
                 </Link>
@@ -120,8 +124,8 @@ const Footer = () => {
                 >
                   <Image
                     src="/images/icons/twitter.png"
-                    width={30}
-                    height={30}
+                    width={40}
+                    height={40}
                     alt=""
                   />
                 </Link>
@@ -133,8 +137,8 @@ const Footer = () => {
                 >
                   <Image
                     src="/images/icons/instagram.png"
-                    width={30}
-                    height={30}
+                    width={40}
+                    height={40}
                     alt=""
                   />
                 </Link>
@@ -152,7 +156,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className={styles.footIcon}
                 >
-                  <YouTubeIcon color='primary' />
+                  <YouTubeIcon color="primary" />
                 </Link>
               </div>
             </Col>
