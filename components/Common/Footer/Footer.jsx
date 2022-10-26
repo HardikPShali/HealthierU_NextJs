@@ -81,22 +81,25 @@ const Footer = () => {
           <Row>
             <Col md={8}>
               <div className={styles.termsContainer}>
-                <Link href="/privacy-policy" className={styles.copyrightLinks}>
+                <Link
+                  href="/static/privacy-policy"
+                  className={styles.copyrightLinks}
+                >
                   Privacy and Security
                 </Link>
                 <Link
-                  href="/terms-and-conditions"
+                  href="/static/terms-and-conditions"
                   className={styles.copyrightLinks}
                 >
                   Terms and Conditions
                 </Link>
                 <Link
-                  href="/help-and-support"
+                  href="/static/help-and-support"
                   className={styles.copyrightLinks}
                 >
                   Help and Support
                 </Link>
-                <Link href="/faq-page" className={styles.copyrightLinks}>
+                <Link href="/static/faq-page" className={styles.copyrightLinks}>
                   FAQ
                 </Link>
               </div>
