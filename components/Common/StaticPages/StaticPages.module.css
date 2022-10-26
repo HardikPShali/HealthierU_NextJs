@@ -7,3 +7,61 @@
   font-size: 14px;
   text-align: justify;
 }
+
+.helpAndSupportRow {
+  height: auto;
+  align-items: center;
+}
+
+.helpAndSupportRow .MuiFormControl-root.MuiTextField-root {
+  width: 100%;
+}
+
+.helpAndSupportRow .MuiInputBase-formControl {
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.helpAndSupportRow .MuiInputBase-multiline {
+  padding: 5px 10px;
+  border: none !important;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 0 3px #00000030;
+}
+
+.helpAndSupportRow textarea {
+  padding: 10px;
+  border: none !important;
+  background: #fff;
+}
+
+.helpAndSupportRow .MuiFilledInput-underline:after {
+  display: none;
+}
+
+.helpAndSupportRow .MuiFilledInput-underline:before {
+  display: none;
+}
+
+.helpAndSupportRow h2 {
+  color: var(--primary);
+  font-size: 40px;
+}
+
+.contactDetails h6 {
+  font-weight: 600;
+}
+
+.contactDetails p {
+  color: #999;
+  font-size: 17px;
+}
+
+.inputStandardBasic {
+  border: none !important;
+  border-radius: 10px;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 0 3px #00000030;
+}

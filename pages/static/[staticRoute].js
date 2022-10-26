@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router';
-import ErrorPage from 'next/error';
-import React from 'react'
 import PrivacyPolicyStaticPage from '../../components/Common/StaticPages/PrivacyPolicyStaticPage'
 import TermsAndConditionsStaticPage from '../../components/Common/StaticPages/TermsAndConditionsStaticPage';
 import FAQStaticPage from '../../components/Common/StaticPages/FAQStaticPage';
+import HelpAndSupportStaticPage from '../../components/Common/StaticPages/HelpAndSupportStaticPage';
 
 const PrivacyPolicy = () => {
     const router = useRouter();
@@ -19,8 +18,11 @@ const PrivacyPolicy = () => {
         case 'faq-page':
             return <FAQStaticPage />
 
+        case 'help-and-support':
+            return <HelpAndSupportStaticPage />
+
         default:
-            return <ErrorPage statusCode={404} />
+            return <></>
     }
 }
 
