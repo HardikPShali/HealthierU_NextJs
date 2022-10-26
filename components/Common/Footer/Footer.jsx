@@ -5,6 +5,7 @@ import styles from './Footer.module.css';
 import cls from 'classnames';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import Newsletter from './Newsletter';
 
 const Footer = () => {
   return (
@@ -35,7 +36,9 @@ const Footer = () => {
               xl={6}
               style={{ display: 'flex', height: 135, alignItems: 'center' }}
             >
-              <div style={{ width: '100%' }}>{/* <Newsletter /> */}</div>
+              <div style={{ width: '100%' }}>
+                <Newsletter />
+              </div>
             </Col>
             <Col md={12} lg={4} xl={4} className={styles.lastCol}>
               <h4 className={styles.footerWellnessHeading}>

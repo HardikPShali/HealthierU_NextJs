@@ -1,0 +1,42 @@
+.footerInput {
+  width: 53%;
+  border: none;
+  border-radius: 22px;
+  padding: 10px 20px;
+  outline: none;
+  box-shadow: none;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #fff;
+  color: #000;
+}
+
+.paragraphStyles {
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.submitBtn {
+  padding: 10px 20px;
+  background-color: var(--primarysecond) !important;
+  color: #fff;
+  border-radius: 22px;
+  width: 30%;
+  position: relative;
+  right: 3.5%;
+  bottom: 1.8px;
+}
+
+.submitBtn:hover {
+  background-color: #f6ceb4;
+}
+
+.subscriptionMessage {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 5px;
+  color: red;
+  font-weight: 400;
+  margin-left: 15px;
+}
