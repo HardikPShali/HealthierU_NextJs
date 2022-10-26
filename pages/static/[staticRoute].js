@@ -9,10 +9,6 @@ const PrivacyPolicy = () => {
     const router = useRouter();
     const { staticRoute } = router.query;
 
-    // if (staticRoute === 'privacy-policy') {
-    //     return <PrivacyPolicyStaticPage />
-    // }
-
     switch (staticRoute) {
         case 'privacy-policy':
             return <PrivacyPolicyStaticPage />
@@ -26,12 +22,6 @@ const PrivacyPolicy = () => {
         default:
             return <ErrorPage statusCode={404} />
     }
-
-    // return (
-    //     <div>
-    //         <PrivacyPolicyStaticPage />
-    //     </div>
-    // )
 }
 
 export default PrivacyPolicy
