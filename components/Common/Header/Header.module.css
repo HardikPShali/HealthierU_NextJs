@@ -159,9 +159,11 @@ svg#search-icon {
 .mobileNavHeader .menuIcon {
   cursor: pointer;
   display: inline-block;
-  padding: 28px 20px;
-  position: relative;
+  padding: 30px 20px;
+  position: absolute;
   user-select: none;
+  right: 10px;
+  top: 10px;
 }
 
 .mobileNavHeader .menuIcon .navicon {

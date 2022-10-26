@@ -1,0 +1,114 @@
+/*
+* Footer Navbar
+*/
+
+.footer {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 20px 60px 20px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.footerStoreIcons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer .row {
+  align-items: flex-end;
+}
+
+.footerWellnessHeading {
+  font-size: 1.4rem;
+}
+
+.footerLink {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.termsContainer {
+  display: flex;
+}
+
+.lastCol {
+  text-align: right;
+}
+
+.downloadStatement {
+  font-size: 12px;
+  margin: 20px 0;
+  color: #fff;
+}
+
+.storeIcon {
+  width: 7rem;
+  /* margin-right: 15px; */
+}
+
+.copyrightLinks {
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+  margin: 0 20px 0 0;
+}
+.copyrightLinks:hover {
+  color: #3e4543;
+}
+.copyright {
+  padding: 15px 0;
+  background-color: var(--primary);
+}
+
+.copyrightText {
+  margin: 15px 0 0;
+  font-size: 12px;
+  color: #fff;
+}
+
+.copyrightText a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.socialIcon {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.footIcon {
+  width: 45px;
+}
+
+.footIcon svg{
+  color: #fff;
+  background: #00d0cc;
+  border-radius: 50%;
+  padding: 4px;
+  font-size: 30px!important;
+  margin: 2px 0 0 10px;
+}
+
+#copyright .row {
+  align-items: flex-start;
+}
+
+/* FOOTER ICONS RESPONSIVE */
+
+.imageMobileRespv__landing {
+  margin-left: 37px;
+}
+
+@media (min-width: 820px) and (max-width: 1024px) {
+  .imageMobileRespv__landing {
+    margin-left: 100px;
+  }
+  button.continue-btn {
+    margin-top: 69px;
+  }
+}
