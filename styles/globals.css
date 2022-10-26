@@ -15,6 +15,25 @@ a {
   box-sizing: border-box;
 }
 
+:root {
+  --primary: #00d0cc;
+  --primarysecond: #f6ceb4;
+  --secondary: #ff6563;
+  --text-primary: #3e4543;
+  --text-secondary: #999999;
+  --font-primary: 'Rubik', sans-serif;
+}
+
+.btn {
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  text-decoration: none;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

@@ -1,33 +1,100 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import Link from 'next/link';
+import Image from 'next/image';
+import styles from './Header.module.css';
+import cls from 'classnames';
 
-const Header = () => {
+const Header = ({ hideButton }) => {
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <div className={styles.navigation_main_wrapper}>
+      <div className={styles.web_navigation_wrapper}>
+        <Navbar
+          variant="dark"
+          id="navbar"
+          sticky="top"
+          className={styles.nav_navbar}
+        >
+          <div className={styles.web_navigation_main}>
+            <Container className={styles.web_navigation_content}>
+              <Link href="/">
+                <Image
+                  className="header_logo-image"
+                  src="/images/logo/logo-with-quote.png"
+                  id="icon"
+                  alt="HealthierU Logo"
+                  width={190}
+                  height={50}
+                />
+              </Link>
+              <Nav>
+                {!hideButton && (
+                  <div>
+                    <div className={styles.navMenuWrapper}>
+                      <div className={styles.navMenuContainer}>
+                        <ul className={styles.navMenuUl}>
+                          <li>
+                            <Link href="/#about-us">About Us</Link>
+                          </li>
+                          <li>
+                            <Link href="/#how-it-work">How It Works</Link>
+                          </li>
+                          <li>
+                            <Link href="/#our-service">Our Services</Link>
+                          </li>
+                        </ul>
+                      </div>
+                      <Link href="/signin">
+                        <button className={cls('btn', styles.btnSignUp)}>
+                          Sign in / Join Now
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </Nav>
+            </Container>
+          </div>
+        </Navbar>
+      </div>
+      <div className={styles.mobileNavHeader}>
+        <Link href="/" className={styles.mrAuto}>
+          <Image
+            src="/images/logo/logo-with-quote.png"
+            id="icon"
+            alt="HealthierU Logo"
+            width={70}
+            height={70}
+          />
+        </Link>
+        <input className={styles.menuBtn} type="checkbox" id="menu-btn" />
+        <label className={styles.menuIcon} htmlFor="menu-btn">
+          <span className={styles.navicon}></span>
+        </label>
+        <ul className={styles.menu}>
+          <li>
+            <Link href="/#about-us">About Us</Link>
+          </li>
+          <li>
+            <Link href="/#how-it-work">How It Works</Link>
+          </li>
+          <li>
+            <Link href="/#our-service">Our Services</Link>
+          </li>
+          <li>
+            <Link href="/#footer">Contact Us</Link>
+          </li>
+          <li>
+            <Link href="/signin">
+              <button className={cls('btn', styles.btnSignUp)}>
+                Sign in / Join Now
+              </button>
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 };
 

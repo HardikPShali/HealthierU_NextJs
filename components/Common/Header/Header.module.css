@@ -1,0 +1,252 @@
+.navigation_main_wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 1050;
+}
+
+.web_navigation_main {
+  width: 100%;
+}
+
+.web_navigation_content {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+/*
+* Header Navbar
+*/
+
+.nav_navbar {
+  background-color: var(--primary);
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+a.nav-link.active {
+  background: none !important;
+}
+
+.header-btn {
+  border-radius: 22px;
+  padding: 2px 60px;
+  margin-right: 10px;
+  background-color: transparent !important;
+  color: #fff !important;
+  border: 1px solid #fff;
+}
+
+.nav-border {
+  border-right: 2px solid #fff;
+}
+
+.nav-link {
+  padding: 0 10px;
+}
+
+svg#search-icon {
+  color: #fff;
+  margin: 4px 5px;
+}
+
+.btnSignUp {
+  background-color: #f6ceb4;
+  border-radius: 22px;
+  border-color: #f6ceb4;
+  padding: 0.575rem 1.4rem;
+  color: #fff;
+}
+
+.btnSignUp:hover {
+  background-color: #f6ceb4;
+  border-color: #f6ceb4;
+  color: #fff;
+}
+
+/* -------Nav-Menu------- */
+.navMenuWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navMenuContainer ul li {
+  list-style: none;
+  padding-right: 2rem;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.navMenuContainer ul li {
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+.navMenuContainer ul li:hover {
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  transform: scale(1.05);
+  transform: translateY(4px);
+}
+.navMenuUl {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 0;
+}
+.navMenuUl a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: white;
+  font-weight: 400;
+}
+
+/* Mobile navigation Navbar */
+
+.mobileNavHeader {
+  background-color: #00d0cc;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1);
+  /* position: fixed; */
+  width: 100%;
+  z-index: 20;
+}
+.mobileNavHeader a img {
+  width: 25% !important;
+  margin: 1rem;
+}
+
+.mobileNavHeader ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background-color: #00d0cc;
+  text-align: center;
+}
+
+.mobileNavHeader li a {
+  display: block;
+  padding: 20px 20px;
+  border-right: 1px solid #f4f4f4;
+  text-decoration: none;
+  color: #3e4543;
+  transition: ease-in-out 0.3s;
+}
+
+.mobileNavHeader li a:hover,
+.mobileNavHeader .menuBtn:hover {
+  color: #e9e9e9;
+  transition: ease-in-out 0.3s;
+}
+
+.mobileNavHeader .logo {
+  display: block;
+  float: left;
+  font-size: 2em;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+/* menu */
+
+.mobileNavHeader .menu {
+  clear: both;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+}
+
+/* menu icon */
+
+.mobileNavHeader .menuIcon {
+  cursor: pointer;
+  display: inline-block;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+}
+
+.mobileNavHeader .menuIcon .navicon {
+  background: #333;
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 18px;
+}
+
+.mobileNavHeader .menuIcon .navicon:before,
+.mobileNavHeader .menuIcon .navicon:after {
+  background: #333;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 100%;
+}
+
+.mobileNavHeader .menuIcon .navicon:before {
+  top: 5px;
+}
+
+.mobileNavHeader .menuIcon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+
+.mobileNavHeader .menuBtn {
+  display: none;
+}
+
+.mobileNavHeader .menuBtn:checked ~ .menu {
+  max-height: 100%;
+}
+
+.mobileNavHeader .menuBtn:checked ~ .menuIcon .navicon {
+  background: transparent;
+}
+
+.mobileNavHeader .menuBtn:checked ~ .menuIcon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.mobileNavHeader .menuBtn:checked ~ .menuIcon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.mobileNavHeader .menuBtn:checked ~ .menuIcon:not(.steps) .navicon:before,
+.mobileNavHeader .menuBtn:checked ~ .menuIcon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+@media screen and (max-width: 1095px) {
+  .web_navigation_wrapper {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1095px) {
+  .web-navigation-wrapper {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1095px) {
+  .mobileNavHeader {
+    display: none;
+  }
+  .mobileNavHeader li {
+    float: left;
+  }
+  .mobileNavHeader li a {
+    padding: 20px 30px;
+  }
+  .mobileNavHeader .menu {
+    clear: none;
+    float: right;
+    max-height: none;
+  }
+  .mobileNavHeader .menuIcon {
+    display: none;
+  }
+}
