@@ -66,18 +66,22 @@
 .howContent {
   margin-bottom: 3rem;
 }
+
 .howContent h3 {
   font-size: 2rem;
   color: #3e3e3e;
 }
+
 ul.light {
   padding-left: 20px;
 }
+
 .light li {
   font-size: 1.1rem;
   font-weight: 300;
   line-height: 150%;
 }
+
 .aboutContent h3 {
   font-size: 2rem;
   color: #3e3e3e;
@@ -102,6 +106,7 @@ ul.light {
   color: #3e3e3e;
   padding: 2rem 10rem;
 }
+
 .edgeSectionContainer {
   border-radius: 33px;
   padding: 4rem 4rem;
@@ -121,18 +126,22 @@ ul.light {
   margin-top: 2rem;
   font-size: 1.2rem;
 }
+
 .edgeText ul {
   padding-left: 20px;
 }
+
 .edgeText ul li {
   font-size: 1.1rem;
   font-weight: 600;
   line-height: 190%;
 }
+
 .edgeImage {
   display: flex;
   justify-content: center;
 }
+
 .edgeImage img {
   width: 20rem;
   transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -140,6 +149,7 @@ ul.light {
   box-shadow: 12px 12px 24px #727272, -12px -12px 24px #fbfbfb;
   border-radius: 33px;
 }
+
 .edgeImage:hover img {
   transform: translateY(10px);
   transform: scale(1.03);
@@ -151,13 +161,16 @@ ul.light {
   padding-top: 7%;
   overflow: hidden;
 }
+
 .powerfulFeatureImage {
   display: flex;
   justify-content: center;
 }
+
 .powerfulFeature .powerfulFeatureImage img {
   width: 25rem;
 }
+
 .powerfulFeatureText h1 {
   position: relative;
   display: inline-block;
@@ -176,9 +189,11 @@ ul.light {
   line-height: 190%;
   font-weight: 300;
 }
+
 .powerfulFeatureImage img {
   transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
 .powerfulFeatureImage:hover img {
   transform: translateY(5);
   transform: scale(1.04);
@@ -190,6 +205,7 @@ ul.light {
   background-color: #eee9df;
   padding: 5rem 15rem;
 }
+
 .ourSpecialitiesSection h1 {
   display: inline-block;
   position: relative;
@@ -204,9 +220,11 @@ ul.light {
   margin: 1rem 0 3rem 0;
   width: 33ch;
 }
+
 .ourSpecialitiesSection img {
   width: 6rem;
 }
+
 .ourSpecialitiesSection h3 {
   color: #00d1cd;
   font-size: 1.35rem;
@@ -214,13 +232,69 @@ ul.light {
   margin-top: 2rem;
   /* white-space: nowrap; */
 }
+
 .ourSpecialitiesSection ul {
   padding-left: 20px;
 }
+
 .ourSpecialitiesSection li {
   font-size: 1rem;
   line-height: 190%;
   font-weight: 300;
+}
+
+/* CARDS */
+.twoBoxSection {
+  background-color: #eee9df;
+  padding: 2rem 10rem;
+}
+
+.card,
+.cardImgTop {
+  border-radius: 20px;
+  border: none !important;
+  height: 400px;
+}
+
+.cardBody {
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  background-color: #00d0cc;
+  background-color: var(--primary);
+  width: 100%;
+  height: 150px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: block !important;
+  padding-top: 1.25rem !important;
+  font-weight: 400 !important;
+}
+
+.cardTitle {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.cardText {
+  font-size: 12px;
+  text-align: center;
+}
+
+.boxCardBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.assessmentBtn {
+  border-radius: 22px;
+  padding: 2px 20px;
+  border: none;
+  font-size: 13px;
+  border: 1px solid #fff;
+  color: #fff;
 }
 
 @media screen and (max-width: 990px) {
@@ -228,19 +302,24 @@ ul.light {
     width: auto;
     margin-top: 0rem;
   }
+
   .purpose-right h1 {
     font-size: 2.5rem;
   }
+
   .purpose-right span {
     font-size: 2.7rem;
   }
+
   .bannerTextAlign {
     margin-bottom: 8rem;
   }
+
   .signUp_icon {
     position: initial;
     margin-right: 0.8rem;
   }
+
   .signup-btnWrap {
     position: initial;
   }
@@ -279,13 +358,16 @@ ul.light {
   .edgeSectionContainer {
     padding: 4rem 2rem;
   }
+
   .edgeText h1 {
     font-size: 2rem;
   }
+
   .edgeImage {
     display: flex;
     justify-content: center;
   }
+
   .edgeImage img {
     width: 15rem;
     margin: 2rem;
@@ -294,6 +376,7 @@ ul.light {
   .powerfulFeature .powerfulFeatureImage img {
     width: 17rem;
   }
+
   .powerfulFeatureText {
     padding: 0px 8px;
   }
@@ -301,13 +384,16 @@ ul.light {
   .ourSpecialitiesSection h1 {
     font: size 2rem;
   }
+
   .ourSpecialitiesSubtitle {
     font-size: 1rem;
     width: auto;
   }
+
   .ourSpecialitiesSection h3 {
     font-size: 1.2rem;
   }
+
   .ourSpecialitiesSection ul {
     margin-bottom: 3rem;
   }
@@ -359,13 +445,16 @@ ul.light {
   .edgeSection {
     padding-bottom: 1rem;
   }
+
   .edgeSectionContainer {
     padding: 2rem 2rem;
     border-radius: 9px;
   }
+
   .edgeText {
     padding: 0;
   }
+
   .edgeText h1 {
     font-size: 1.3rem !important;
   }
@@ -373,6 +462,7 @@ ul.light {
   .edgeText p {
     font-size: 0.9rem !important;
   }
+
   .edgeText ul li {
     font-size: 0.9rem !important;
     font-weight: 400 !important;
@@ -389,25 +479,49 @@ ul.light {
   .ourSpecialitiesSection {
     padding: 3rem 1rem !important;
   }
+
   .ourSpecialitiesSection ul {
     margin-bottom: 1rem !important;
   }
+
   .ourSpecialitiesSection h1 {
     font-size: 1.1rem !important;
   }
+
   .ourSpecialitiesSubtitle {
     font-size: 1rem !important;
     margin: 3rem 0 2rem 0 !important;
   }
+
   .ourSpecialitiesSection img {
     width: 3rem !important;
     margin-top: 2rem !important;
   }
+
   .ourSpecialitiesSection h3 {
     font-size: 1.2rem !important;
   }
+
   .ourSpecialitiesSection li {
     font-size: 0.9rem !important;
     font-weight: 300 !important;
+  }
+
+  .twoBoxSection {
+    padding: 2rem 10rem;
+  }
+
+  .card,
+  .cardImgTop {
+    border-radius: 20px;
+    border: none !important;
+    height: 400px;
+    width: 300px;
+    left: -87px;
+  }
+
+  .assessmentBtn {
+    position: static;
+    padding: 6px 12px;
   }
 }

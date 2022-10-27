@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Header from '../Header/Header';
+import Link from 'next/link';
 import {
   MDBCarousel,
   MDBCarouselCaption,
@@ -306,6 +306,77 @@ const LandingPage = () => {
                 <li>Stress management</li>
                 <li>Mental management</li>
               </ul>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
+      {/* TWO-BOX SECTION */}
+      <div className={styles.twoBoxSection}>
+        <Container className={cls('p-0', styles.paddingMobile)}>
+          <Row className="pb-5 two-box-padding">
+            <Col md={12} lg={6} xl={6} className="mb-3">
+              <Card className={styles.card}>
+                <Card.Img
+                  variant="top"
+                  src="/images/landing-images/home-2.png"
+                  className={styles.cardImgTop}
+                />
+                <Card.Body className={styles.cardBody}>
+                  <Card.Title className={styles.cardTitle}>
+                    How healthy are you?
+                  </Card.Title>
+                  <Card.Text className={styles.cardText}>
+                    Find out how you measure with health and well-being
+                    assessment
+                  </Card.Text>
+                  <div className={styles.boxCardBtn}>
+                    <Link href="/signin" onClick={() => window.scrollTo(0, 0)}>
+                      <button
+                        variant="primary"
+                        className={cls(
+                          'btn',
+                          'btn-outline-light',
+                          styles.assessmentBtn
+                        )}
+                      >
+                        Take my assessment
+                      </button>
+                    </Link>
+                  </div>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col md={12} lg={6} xl={6}>
+              <Card className={styles.card}>
+                <Card.Img
+                  variant="top"
+                  src="/images/landing-images/home-3.png"
+                  className={styles.cardImgTop}
+                />
+                <Card.Body className={styles.cardBody}>
+                  <Card.Title className={styles.cardTitle}>
+                    Looking for an expert advise?
+                  </Card.Title>
+                  <Card.Text className={styles.cardText}>
+                    Check out our available wellness specialists
+                  </Card.Text>
+                  <div className={styles.boxCardBtn}>
+                    <Link href="/signin" onClick={() => window.scrollTo(0, 0)}>
+                      <button
+                        variant="primary"
+                        className={cls(
+                          'btn',
+                          'btn-outline-light',
+                          styles.assessmentBtn
+                        )}
+                      >
+                        Meet Our Doctors
+                      </button>
+                    </Link>
+                  </div>
+                </Card.Body>
+              </Card>
             </Col>
           </Row>
         </Container>
