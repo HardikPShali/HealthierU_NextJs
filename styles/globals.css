@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+:root {
+  --primary: #00d0cc;
+  --primarysecond: #f6ceb4;
+  --secondary: #ff6563;
+  --text-primary: #3e4543;
+  --text-secondary: #999999;
+  --font-primary: 'Rubik', sans-serif;
+}
+
 html,
 body {
   padding: 0;
@@ -18,15 +29,7 @@ a {
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
-}
-
-:root {
-  --primary: #00d0cc;
-  --primarysecond: #f6ceb4;
-  --secondary: #ff6563;
-  --text-primary: #3e4543;
-  --text-secondary: #999999;
-  --font-primary: 'Rubik', sans-serif;
+  font-family: var(--font-primary);
 }
 
 .btn {
