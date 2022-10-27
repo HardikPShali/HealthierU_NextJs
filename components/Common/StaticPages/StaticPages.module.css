@@ -63,5 +63,19 @@
   border-radius: 10px;
   background: #fff;
   width: 100%;
-  box-shadow: 0 0 3px #00000030;
+  box-shadow: 0 0 3px rgb(0 0 0 / 19%);
+}
+
+.inputStandardBasic > .MuiInputBase-root > .MuiInputBase-input::before {
+  border: none !important;
+  content: '' !important;
+}
+
+.signBtn {
+  width: 100%;
+  border-radius: 22px;
+  margin-top: 20px;
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
 }

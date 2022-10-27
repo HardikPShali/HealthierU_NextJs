@@ -205,7 +205,7 @@ const LandingPage = () => {
                 src="/images/landing-images/step13.png"
                 alt=""
                 width={500}
-                height={500}
+                height={600}
               />
             </Col>
             <Col

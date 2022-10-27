@@ -89,9 +89,14 @@ a.carousel-control-next {
   padding: 0 !important;
 }
 
+.MuiFilledInput-input,
+.MuiFilledInput-underline {
+  padding: 5px !important;
+}
+
 @media screen and (max-width: 768px) {
   .carousel-caption {
-    top: 10% !important;
+    top: 10%;
   }
 }
 

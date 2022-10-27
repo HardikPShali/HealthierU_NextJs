@@ -7,6 +7,7 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import axios from "axios";
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import cls from 'classnames';
 
 
 const HelpAndSupportStaticPage = ({ currentuserInfo }) => {
@@ -175,7 +176,7 @@ const HelpAndSupportStaticPage = ({ currentuserInfo }) => {
                                                 variant="filled"
                                             />
                                             <input
-                                                className="btn btn-primary sign-btn"
+                                                className={cls("btn", "btn-primary", styles.signBtn)}
                                                 type="submit"
                                                 value="SEND MESSAGE"
                                                 disabled={disbleBtn}
