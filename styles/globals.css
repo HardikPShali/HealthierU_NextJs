@@ -77,6 +77,10 @@ a.carousel-control-next {
   text-align: center;
 }
 
+.p-0 {
+  padding: 0 !important;
+}
+
 @media screen and (max-width: 768px) {
   .carousel-caption {
     top: 10% !important;

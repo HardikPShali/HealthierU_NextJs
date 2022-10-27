@@ -1,3 +1,4 @@
+/* BANNER CAROUSEL SECTION */
 .carouselContainer {
   max-width: 100%;
   padding: 0;
@@ -47,6 +48,127 @@
   margin-left: 8px;
 }
 
+/* ABOUT US SECTION */
+.aboutUsSection {
+  background-color: #eee9df;
+  padding: 5rem 0;
+}
+
+.betterFutureContent {
+  background-image: url(../../../public/images/banner-images/better-future.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  border-radius: 33px;
+  padding: 4rem 4rem;
+}
+
+.howContent {
+  margin-bottom: 3rem;
+}
+.howContent h3 {
+  font-size: 2rem;
+  color: #3e3e3e;
+}
+ul.light {
+  padding-left: 20px;
+}
+.light li {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 150%;
+}
+.aboutContent h3 {
+  font-size: 2rem;
+  color: #3e3e3e;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  position: relative;
+  display: inline;
+  border-bottom: 6px solid var(--primary);
+  border-radius: 4px;
+}
+
+.aboutContent p {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin: 1.5rem 0 3rem 0;
+  line-height: 160%;
+}
+
+/* EDGE SECTION */
+.edgeSection {
+  background-color: #eee9df;
+  color: #3e3e3e;
+  padding-bottom: 5rem;
+}
+.edgeSectionContainer {
+  border-radius: 33px;
+  padding: 4rem 4rem;
+  background: white;
+}
+
+.edgeText h1 {
+  font-size: 2.5rem;
+  margin-top: 2rem;
+  position: relative;
+  display: inline;
+  border-bottom: 6px solid var(--primary);
+  border-radius: 4px;
+}
+
+.edgeSubtitle {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+}
+.edgeText ul {
+  padding-left: 20px;
+}
+.edgeText ul li {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 190%;
+}
+.edgeImage {
+  display: flex;
+  justify-content: center;
+}
+.edgeImage img {
+  width: 20rem;
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: #e0e0e0;
+  box-shadow: 12px 12px 24px #727272, -12px -12px 24px #fbfbfb;
+  border-radius: 33px;
+}
+.edgeImage:hover img {
+  transform: translateY(10px);
+  transform: scale(1.03);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media screen and (max-width: 990px) {
+  .purpose-left p {
+    width: auto;
+    margin-top: 0rem;
+  }
+  .purpose-right h1 {
+    font-size: 2.5rem;
+  }
+  .purpose-right span {
+    font-size: 2.7rem;
+  }
+  .bannerTextAlign {
+    margin-bottom: 8rem;
+  }
+  .signUp_icon {
+    position: initial;
+    margin-right: 0.8rem;
+  }
+  .signup-btnWrap {
+    position: initial;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .textPrimaryClrPara {
     padding-bottom: 13rem;
@@ -62,6 +184,34 @@
   .textPrimaryClrPara {
     font-size: 13px !important;
     width: 32ch !important;
+  }
+
+  .paddingMobile {
+    padding: 0 1rem;
+  }
+
+  .betterFutureContent {
+    border-radius: 7px !important;
+    padding: 3rem 1rem !important;
+  }
+
+  .aboutContent h3 {
+    font-size: 2rem;
+  }
+
+  .edgeSectionContainer {
+    padding: 4rem 2rem;
+  }
+  .edgeText h1 {
+    font-size: 2rem;
+  }
+  .edgeImage {
+    display: flex;
+    justify-content: center;
+  }
+  .edgeImage img {
+    width: 15rem;
+    margin: 2rem;
   }
 }
 
@@ -91,12 +241,8 @@
     padding: 2rem 1rem !important;
   }
 
-  .about-us_section {
+  .aboutUsSection {
     padding-top: 2rem !important;
-  }
-
-  .btn-mob-size {
-    font-size: 0.6rem !important;
   }
 
   .carousel-caption {
@@ -110,5 +256,27 @@
 
   .carouselImage {
     height: 100%;
+  }
+
+  .edgeSection {
+    padding-bottom: 1rem;
+  }
+  .edgeSectionContainer {
+    padding: 2rem 2rem;
+    border-radius: 9px;
+  }
+  .edgeText {
+    padding: 0;
+  }
+  .edgeText h1 {
+    font-size: 1.3rem !important;
+  }
+
+  .edgeText p {
+    font-size: 0.9rem !important;
+  }
+  .edgeText ul li {
+    font-size: 0.9rem !important;
+    font-weight: 400 !important;
   }
 }
