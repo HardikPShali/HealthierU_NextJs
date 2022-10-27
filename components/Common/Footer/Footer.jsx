@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer>
       <div className={styles.footer}>
-        <Container className="p-0 padding-mobile">
+        <Container className={cls('p-0', styles.paddingMobile)}>
           <Row className="align-items-center">
             <Col md={3} lg={2} xl={2}>
               <Link href="/#about-us" className={styles.footerLink}>

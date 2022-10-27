@@ -60,9 +60,11 @@
   font-size: 12px;
   margin: 0 20px 0 0;
 }
+
 .copyrightLinks:hover {
   color: #3e4543;
 }
+
 .copyright {
   padding: 15px 0;
   background-color: var(--primary);
@@ -114,5 +116,84 @@
   }
   button.continue-btn {
     margin-top: 69px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer .row > div {
+    margin-bottom: 40px;
+  }
+
+  .footer {
+    padding: 40px 20px 20px !important;
+  }
+
+  .termsContainer {
+    justify-content: center;
+  }
+
+  .footerWellnessHeading {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .paddingMobile {
+    padding: 0 1rem;
+  }
+
+  .copyright {
+    text-align: center !important;
+  }
+
+  .copyright .row > div {
+    margin-bottom: 20px;
+  }
+
+  .imageMobileRespv__landing {
+    margin-left: 0px;
+  }
+
+  .storeIcon {
+    width: 30%;
+  }
+
+  .lastCol {
+    text-align: left;
+  }
+
+  .copyright .lastCol {
+    text-align: center !important;
+  }
+
+  .socialIcon {
+    justify-content: center !important;
+  }
+
+  .footerStoreIcons {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footerStoreIcons img {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer {
+    padding: 20px 10px 20px !important;
+  }
+
+  .socialIcon {
+    justify-content: center !important;
+    margin-top: 1rem !important;
+  }
+
+  .termsContainer {
+    justify-content: space-around !important;
+  }
+
+  .termsContainer a {
+    margin: 0 !important;
   }
 }

@@ -34,6 +34,61 @@ a {
   text-decoration: none;
 }
 
+/* LANDING PAGE CAROUSEL */
+a.carousel-control-prev {
+  display: none;
+}
+
+a.carousel-control-next {
+  display: none;
+}
+
+.carousel-indicators li {
+  width: 20px;
+  height: 20px;
+  border-radius: 22px;
+  border: 2px solid #fff;
+  background: none;
+  margin-right: 10px;
+}
+
+.carousel-indicators .active {
+  width: 20px;
+  background: #fff;
+}
+
+.carousel-caption {
+  text-align: left;
+  color: var(--primary);
+  right: 0 !important;
+  bottom: 0 !important;
+  padding: 42px;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  left: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+.card-title.h5 {
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .carousel-caption {
+    top: 10% !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .carousel-caption {
+    padding: 0;
+    top: 0%;
+  }
+}
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

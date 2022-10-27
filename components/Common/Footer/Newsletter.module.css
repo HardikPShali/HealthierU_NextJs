@@ -40,3 +40,13 @@
   font-weight: 400;
   margin-left: 15px;
 }
+
+@media screen and (max-width: 768px) {
+  .footerInput {
+    width: 63% !important;
+  }
+  .submitBtn {
+    width: 37% !important;
+    right: 6.5% !important;
+  }
+}

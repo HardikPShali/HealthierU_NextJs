@@ -1,0 +1,114 @@
+.carouselContainer {
+  max-width: 100%;
+  padding: 0;
+}
+
+.carouselImage {
+  display: block;
+  width: 100%;
+}
+
+.bannerTextAlign {
+  margin-bottom: 14rem;
+}
+
+.h3Responsive {
+  font-size: 3rem;
+  font-weight: 600;
+  width: 25ch;
+  color: white;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.helpDesc {
+  font-size: 1rem;
+  white-space: pre-line;
+  width: 47ch;
+  color: white;
+  text-align: left;
+}
+
+.textPrimaryClr {
+  font-size: 3rem;
+  font-weight: 600;
+  width: 23ch;
+  color: var(--primary);
+  text-align: left;
+}
+
+.textPrimaryClrPara {
+  font-size: 1rem;
+  white-space: pre-line;
+  width: 47ch;
+  color: var(--primary);
+  text-align: left;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .textPrimaryClrPara {
+    padding-bottom: 13rem;
+  }
+
+  .h3Responsive,
+  .textPrimaryClr {
+    font-size: 24px !important;
+    width: 18ch !important;
+  }
+
+  .helpDesc,
+  .textPrimaryClrPara {
+    font-size: 13px !important;
+    width: 32ch !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .h3Responsive,
+  .textPrimaryClr {
+    font-size: 17px !important;
+    /* width: 18ch !important; */
+  }
+
+  .helpDesc,
+  .textPrimaryClrPara {
+    font-size: 10px !important;
+    /* width: 35ch !important; */
+  }
+
+  .textPrimaryClrPara {
+    padding: 0;
+  }
+
+  .purpose-section,
+  .our_spl-section {
+    padding: 5rem 1rem !important;
+  }
+
+  .two-box-padding {
+    padding: 2rem 1rem !important;
+  }
+
+  .about-us_section {
+    padding-top: 2rem !important;
+  }
+
+  .btn-mob-size {
+    font-size: 0.6rem !important;
+  }
+
+  .carousel-caption {
+    padding: 0;
+    top: 0%;
+  }
+
+  .bannerTextAlign {
+    margin-bottom: 4rem;
+  }
+
+  .carouselImage {
+    height: 100%;
+  }
+}
