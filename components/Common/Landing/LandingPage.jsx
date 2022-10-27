@@ -179,7 +179,6 @@ const LandingPage = () => {
               </ul>
             </Col>
             <Col className={styles.edgeImage} sm={12} md={12} lg={6} xl={6}>
-              {/* <img className="mr-4" src={Edge1} alt=""></img> */}
               <Image
                 src="/images/landing-images/phone.png"
                 alt=""
@@ -187,17 +186,21 @@ const LandingPage = () => {
                 height={800}
               />
             </Col>
-
-            {/* WIELCORNELL REMOVED */}
           </Row>
         </Container>
       </div>
 
       {/* POWERFUL FEATURE */}
-      <div className="powerful_feature">
+      <div className={styles.powerfulFeature}>
         <Container>
           <Row>
-            <Col className="powerful_Ftr-image" sm={12} md={12} lg={6} xl={6}>
+            <Col
+              className={styles.powerfulFeatureImage}
+              sm={12}
+              md={12}
+              lg={6}
+              xl={6}
+            >
               <Image
                 src="/images/landing-images/step13.png"
                 alt=""
@@ -205,7 +208,13 @@ const LandingPage = () => {
                 height={500}
               />
             </Col>
-            <Col className="powerful_Ftr-text" sm={12} md={12} lg={6} xl={6}>
+            <Col
+              className={styles.powerfulFeatureText}
+              sm={12}
+              md={12}
+              lg={6}
+              xl={6}
+            >
               <h1>POWERFUL FEATURES</h1>
               <ul>
                 <li>Convenient and easy-to-use app</li>
@@ -227,6 +236,76 @@ const LandingPage = () => {
               <br></br>
               <br></br>
               <br id="our-service"></br>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
+      {/* OUR SPECIALITIES SECTION */}
+      <div className={styles.ourSpecialitiesSection}>
+        <Container className={cls('p-0', styles.paddingMobile)}>
+          <div>
+            <br></br>
+            <h1 className="our_spl-title">OUR SPECIALITIES</h1>
+            <p className={styles.ourSpecialitiesSubtitle}>
+              We offer programs and plans to help support your wellness journey.
+            </p>
+          </div>
+          <Row>
+            <Col sm={12} md={6} lg={3} xl={3} l="true">
+              <Image
+                src="/images/landing-images/HeartSpl.png"
+                alt=""
+                width={100}
+                height={100}
+              />
+              <h3>REGENERATIVE MEDICINE</h3>
+              <ul>
+                <li>Sleep Therapy</li>
+                <li>Immune Health</li>
+                <li>Sexual health</li>
+              </ul>
+            </Col>
+            <Col sm={12} md={6} lg={3} xl={3} l="true">
+              <Image
+                src="/images/landing-images/LabSpl.png"
+                alt=""
+                width={400}
+                height={100}
+              />
+              <h3>FUNCTIONAL MEDICINE</h3>
+              <ul>
+                <li>Comprehensive lab diagnostics</li>
+                <li>Gut Microbiome</li>
+                <li>Sexual health hormones</li>
+              </ul>
+            </Col>
+            <Col sm={12} md={6} lg={3} xl={3} l="true">
+              <Image
+                src="/images/landing-images/MolecularSpl.png"
+                alt=""
+                width={100}
+                height={100}
+              />
+              <h3>MOLECULAR MEDICINE</h3>
+              <ul>
+                <li>
+                  Integrative and Holistic Nutrition and sport Performance
+                </li>
+              </ul>
+            </Col>
+            <Col sm={12} md={6} lg={3} xl={3} l="true">
+              <Image
+                src="/images/landing-images/CareSpl.png"
+                alt=""
+                width={100}
+                height={100}
+              />
+              <h3>ENERGY / BODY-MIND MEDICINE</h3>
+              <ul>
+                <li>Stress management</li>
+                <li>Mental management</li>
+              </ul>
             </Col>
           </Row>
         </Container>
