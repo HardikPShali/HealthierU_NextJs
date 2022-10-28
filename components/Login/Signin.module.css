@@ -1,0 +1,60 @@
+.signinBg {
+  background-image: url(../../public/images/signin-bg.png);
+  background-size: cover;
+  background-position: center;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 5% 9%;
+}
+
+.signinTitle {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--primary);
+  text-align: left;
+  margin-left: 1rem;
+}
+
+.signBox {
+  background: #fff;
+  border-radius: 22px;
+  padding: 13px 25px 23px 25px;
+  width: 91%;
+}
+
+.inputStandardBasic {
+  border: none !important;
+  border-radius: 10px;
+  color: #000;
+  background: transparent;
+  width: 100%;
+  box-shadow: 0 0 3px rgb(0 0 0 / 19%);
+}
+
+.forgetText {
+  text-align: right;
+  font-size: 12px;
+  display: block;
+  color: #3e4543 !important;
+}
+
+.signBtn {
+  width: 100%;
+  border-radius: 22px;
+  margin-top: 20px;
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.signBtn:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.signupText {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 12px;
+}

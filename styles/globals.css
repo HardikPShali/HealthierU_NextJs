@@ -30,6 +30,7 @@ a {
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-family: var(--font-primary);
+  text-shadow: none;
 }
 
 .btn {
@@ -92,6 +93,31 @@ a.carousel-control-next {
 .MuiFilledInput-input,
 .MuiFilledInput-underline {
   padding: 5px !important;
+  border-radius: 10px;
+}
+
+.MuiFilledInput-input::after,
+.MuiFilledInput-underline::after {
+  content: none !important;
+  position: absolute;
+}
+
+.MuiFilledInput-input::before,
+.MuiFilledInput-underline::before {
+  content: none !important;
+  position: absolute;
+}
+
+.MuiFilledInput-input:focus,
+.MuiFilledInput-underline:focus {
+  background: #fff !important;
+  outline: none;
+  box-shadow: 0 0 3px rgb(0 0 0 / 19%);
+}
+
+.MuiFilledInput-input:visited,
+.MuiFilledInput-underline:visited {
+  background: #fff !important;
 }
 
 @media screen and (max-width: 768px) {
