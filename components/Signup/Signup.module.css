@@ -114,3 +114,104 @@
   font-size: 11px;
   display: -webkit-inline-box;
 }
+
+.comingSoonPara {
+  color: #3e4543;
+  text-align: center;
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 30px;
+  margin-bottom: 5px !important;
+}
+
+.comingSoonBtn {
+  background: #5fccc8;
+  border-radius: 10px;
+}
+
+/* USER ROLE CSS */
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+}
+
+.userType {
+  padding: 50px 30px;
+  width: 100%;
+  position: relative;
+  padding: 0px;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.userTitle {
+  text-align: center;
+  font-size: 45px;
+  font-weight: 700;
+  display: inline-block;
+  color: var(--primary);
+  margin: 50px 0 0;
+}
+
+.userRoleFormBox {
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 0px !important;
+  padding: 80px 30px;
+}
+
+.role {
+  background-color: #fff;
+  width: 200px;
+  height: 200px;
+  border-radius: 22px;
+  font-weight: 600;
+  color: var(--primary) !important;
+}
+
+.role img {
+  padding: 0 !important;
+  margin-bottom: 10px;
+  width: 90px;
+  height: 90px;
+}
+
+/*OTP Page css*/
+.otpField {
+  width: 48px;
+  color: #000;
+  background-color: #fff;
+  margin-right: 10px;
+  padding-left: 12px;
+  height: 48px;
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  box-shadow: 4px 4px 14px rgb(0 0 0 / 9%);
+}
+
+.otpVerify {
+  width: 120px;
+  margin: 10px 10% 20px;
+  height: 45px;
+  border-radius: 22px;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background-color: transparent !important;
+}
+
+.otpVerify:hover {
+  background-color: var(--primary) !important;
+  color: #fff !important;
+}
+
+.otpBoxDiv {
+  margin: 30px;
+}

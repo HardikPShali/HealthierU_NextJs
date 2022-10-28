@@ -15,8 +15,17 @@ import Cookies from 'universal-cookie';
 import Header from '../Common/Header/Header';
 import Footer from '../Common/Footer/Footer';
 import SelectRole from './SelectRole';
-import { getPreLoginAccessCode } from '../../lib/service/FrontendApiServices';
+import {
+    getPreLoginAccessCode,
+    signupWithEmail,
+} from '../../lib/service/FrontendApiServices';
 import cls from 'classnames';
+import Typography from '@mui/material/Typography';
+import { useRouter } from 'next/router';
+import { handleGoogleAuth } from '../../lib/service/GoogleApiService';
+import { activateOtp, getCurrentUserInfo } from '../../lib/service/AccountService';
+import Image from 'next/image';
+import { toast } from 'react-toastify';
 
 const isNumberOnly = '(?=.*[0-9])';
 const isSpecialChar = '(?=[~`!@#$%^&*()--+={}[]|\\:;"\'<>,.?/_₹])';
@@ -106,7 +115,10 @@ const SignupForm = () => {
                 const passvalue = e.target.value;
                 setpasswordValidity({
                     minchar: passvalue.length >= 8 ? true : false,
-                    num: passvalue.match(isNumberOnly) && passvalue.match(isSpecialChar) ? true : false,
+                    num:
+                        passvalue.match(isNumberOnly) && passvalue.match(isSpecialChar)
+                            ? true
+                            : false,
                     lowcase: passvalue.match(islow) ? true : false,
                     upcase: passvalue.match(isup) ? true : false,
                 });
@@ -164,7 +176,6 @@ const SignupForm = () => {
         }
     });
 
-
     // ROLE SELECTION CODE
     // Doctor
     const handleDoctorClick = () => {
@@ -184,9 +195,8 @@ const SignupForm = () => {
     // Patient and prelogin
     const [showLoginCode, setShowLoginCode] = useState(false);
     const [loginCode, setLoginCode] = useState('');
-    const [preLoginAuthicationEnabled, setPreLoginAuthicationEnabled] = useState(
-        false
-    );
+    const [preLoginAuthicationEnabled, setPreLoginAuthicationEnabled] =
+        useState(false);
     const [loginCodeFromApi, setLoginCodeFromApi] = useState('');
     const [loginCodeError, setLoginCodeError] = useState(false);
     const [loginCodeBlankError, setLoginCodeBlankError] = useState(false);
@@ -281,7 +291,6 @@ const SignupForm = () => {
         preLoginCodeDetailsHandler();
     }, []);
 
-
     //Physical trainer
     const handlePhysicaltrainerClick = () => {
         //const value = "UNKNOWN";
@@ -299,11 +308,259 @@ const SignupForm = () => {
         setComingSoon(false);
     };
 
+    //LOGIC FOR OTP BOXES
+    const [otpBox, setOtpBox] = useState(new Array(4).fill(''));
+    const handleChange = (element, index) => {
+        if (isNaN(element.value)) return false;
+
+        setOtpBox([...otpBox.map((ele, i) => (i === index ? element.value : ele))]);
+
+        if (element.nextSibling) {
+            element.nextSibling.focus();
+        }
+
+        setOtpUser({ ...otpUser, otp: otpBox.join(''), msg: '' });
+    };
+
+    //LOGIC FOR OTP SUBMIT
+    const [otpUser, setOtpUser] = useState({
+        msg: '',
+        loggedIn: false,
+        otp: '',
+    });
+
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleOTPSubmit = async () => {
+        const otp = otpBox.join('');
+
+        const data = {
+            email: user.email,
+            key: otp,
+        };
+
+        console.log({ otp });
+        if (otp === '') {
+            setOtpUser({
+                ...otpUser,
+                msg: 'OTP cannot be blank. Please enter a valid OTP.',
+            });
+        } else {
+            const res = await activateOtp(data).catch((err) => {
+                if (err.response && err.response.status === 406) {
+                    setOtpUser({
+                        ...otpUser,
+                        msg: 'Invalid OTP. Please generate new OTP and try again!',
+                    });
+                    setOtpBox(new Array(4).fill(''));
+                }
+            });
+
+            if (
+                res.data.message ===
+                'Your account has been blocked. Please try after some time.' &&
+                res.data.status === false
+            ) {
+                setOtpUser({
+                    ...otpUser,
+                    msg: res.data.message,
+                });
+                setOtpBox(new Array(4).fill(''));
+                setTimeout(() => {
+                    router.push('/signin');
+                }, 3000);
+            } else if (
+                res.data.message === 'OTP mismatch' &&
+                res.data.status === false
+            ) {
+                setOtpUser({
+                    ...otpUser,
+                    msg: 'Invalid OTP. Please enter the correct OTP.',
+                });
+                setOtpBox(new Array(4).fill(''));
+            } else if (
+                res.data.message === 'Account activated' &&
+                res.data.status === true
+            ) {
+                setOtpBox(new Array(4).fill(''));
+                toast.success('Account activated successfully. Please log in.', {
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    toastId: 'activateAccount',
+                });
+                clearEveryCookie();
+                router.push('/signin');
+            } else {
+                setOtpUser({
+                    ...otpUser,
+                    msg: 'Something went wrong. Please try again!',
+                });
+                setOtpBox(new Array(4).fill(''));
+            }
+        }
+    };
+
+    // to tackle "500 user role reqd." error
+    const router = useRouter();
+
+    const queryFromGSign = router.query.formGoogle;
+    // console.log({ queryFromGSign });
+
+    useEffect(() => {
+        // setTimeout(() => setLoading(false), 1000);
+
+        if (queryFromGSign === 'true') {
+            setDisplay({
+                ...display,
+                signupForm: 'none',
+                whoyouAre: 'block',
+                otpPage: 'none',
+            });
+        }
+    }, []);
+
+    // SIGNUP LOGIC
+    const handleSignup = async () => {
+        setShowLoginCode(false);
+        //setTransparentLoading(true);
+        if (googleAccessToken) {
+            const googleUserData = {
+                token: googleAccessToken,
+                authorities: authorities,
+            };
+            const _accessToken = await handleGoogleAuth(
+                googleUserData,
+                history
+            ).catch((err) => {
+                if (err.response.status === 500 || err.response.status === 504) {
+                    //setTransparentLoading(false);
+                }
+            });
+
+            //console.log(_accessToken);
+            if (_accessToken) {
+                LocalStorageService.setToken(_accessToken);
+                const currentUserInformation = await getCurrentUserInfo().catch(
+                    (err) => {
+                        if (err.response.status === 500 || err.response.status === 504) {
+                            //setTransparentLoading(false);
+                        }
+                    }
+                );
+                cookies.set('currentUser', currentUserInformation.data.userInfo, {
+                    path: '/',
+                });
+                const currentLoggedInUser = cookies.get('currentUser');
+                const { authorities = [] } = currentLoggedInUser || {};
+
+                if (authorities.some((user) => user === 'ROLE_PATIENT')) {
+                    router.push('/patient');
+                }
+                if (authorities.some((user) => user === 'ROLE_DOCTOR')) {
+                    router.push('/doctor');
+                }
+            }
+        }
+        if (!googleAccessToken) {
+            const response = await signupWithEmail(user).catch((error) => {
+                //setTransparentLoading(false);
+                setDisplay({ ...display, signupForm: 'block', whoyouAre: 'none' });
+
+                if (
+                    error.response &&
+                    error.response.status === 500 &&
+                    error.response.data.message === 'Login name already used!'
+                ) {
+                    setErrorMsg({
+                        ...errorMsg,
+                        userNameExistance:
+                            'User name already used. Please try with different user name.',
+                    });
+                }
+                if (
+                    error.response &&
+                    error.response.status === 500 &&
+                    error.response.data.message === 'Email is already in use!'
+                ) {
+                    setErrorMsg({
+                        ...errorMsg,
+                        emailExistance:
+                            'Email is already in use. Please try with different email.',
+                    });
+                }
+            });
+
+            console.log({ response });
+            console.log({ authorities });
+
+            if (response && response.status === 200) {
+                //setTransparentLoading(false);
+
+                if (authorities.some((user) => user === 'ROLE_PATIENT')) {
+                    toast.success(
+                        'OTP is sent to your email. Please check your email and verify OTP.',
+                        {
+                            autoClose: 3000,
+                            hideProgressBar: true,
+                            toastId: 'otpSent',
+                        }
+                    );
+                    setDisplay({
+                        ...display,
+                        signupForm: 'none',
+                        whoyouAre: 'none',
+                        otpPage: 'block',
+                    });
+                }
+                if (authorities.some((user) => user === 'ROLE_DOCTOR')) {
+                    toast.success(
+                        'OTP is sent to your email. Please check your email and verify OTP.',
+                        {
+                            autoClose: 3000,
+                            hideProgressBar: true,
+                            toastId: 'otpSent',
+                        }
+                    );
+                    setDisplay({
+                        ...display,
+                        signupForm: 'none',
+                        whoyouAre: 'none',
+                        otpPage: 'block',
+                    });
+                }
+            }
+        }
+    };
+
+    // cookie removal function ----> 25072022
+    const clearEveryCookie = () => {
+        cookies.remove('refresh_token', { path: '/' });
+        cookies.remove('currentUser', { path: '/' });
+        cookies.remove('access_token', { path: '/' });
+        cookies.remove('GOOGLE_ACCESS_TOKEN', { path: '/' });
+        cookies.remove('GOOGLE_PROFILE_DATA', { path: '/' });
+        cookies.remove('authorities', { path: '/' });
+        cookies.remove('userProfileCompleted', { path: '/' });
+        cookies.remove('profileDetails', { path: '/' });
+    };
+
     return (
         <div>
             <Header hideButton={true} />
 
-            <Container id="signupform-bg" className={styles.signupformBg} style={{ display: display.signupForm }}>
+            <Container
+                id="signupform-bg"
+                className={styles.signupformBg}
+                style={{ display: display.signupForm }}
+            >
                 <Row>
                     <Col md={7}></Col>
                     <Col md={5}>
@@ -446,7 +703,10 @@ const SignupForm = () => {
                                             Password<sup>*</sup>
                                         </p>
                                         <TextValidator
-                                            className={cls(styles.inputStandardBasic, styles.pwdSignupForm)}
+                                            className={cls(
+                                                styles.inputStandardBasic,
+                                                styles.pwdSignupForm
+                                            )}
                                             type={passwordShown ? 'text' : 'password'}
                                             name="password"
                                             onBlur={(e) => handleInputchange(e)}
@@ -491,7 +751,9 @@ const SignupForm = () => {
                                             }}
                                         />
 
-                                        <div className={cls(styles.signupText, styles.passValidation)}>
+                                        <div
+                                            className={cls(styles.signupText, styles.passValidation)}
+                                        >
                                             <input type="radio" required checked={minchar} />
                                             <span>Minimum 8 characters</span>
                                             <br />
@@ -524,14 +786,16 @@ const SignupForm = () => {
                             </ValidatorForm>
                             <p className={styles.signupText}>Already a member?</p>
                             <Link className="w-100 d-block" href="/signin">
-                                <button className={cls(
-                                    'btn',
-                                    'w-100',
-                                    'py-2',
-                                    'pl-2',
-                                    styles.signupBtn,
-                                    'shadow-sm'
-                                )}>
+                                <button
+                                    className={cls(
+                                        'btn',
+                                        'w-100',
+                                        'py-2',
+                                        'pl-2',
+                                        styles.signupBtn,
+                                        'shadow-sm'
+                                    )}
+                                >
                                     Sign In
                                 </button>
                             </Link>
@@ -540,6 +804,7 @@ const SignupForm = () => {
                 </Row>
             </Container>
 
+            {/* ROLE SELeCT SECTION */}
             <SelectRole
                 style={{ display: display.whoyouAre }}
                 handleDoctorClick={handleDoctorClick}
@@ -547,6 +812,89 @@ const SignupForm = () => {
                 handlePhysicaltrainerClick={handlePhysicaltrainerClick}
             />
 
+            {/* OTP SECTION */}
+            <Container
+                id="signupform-bg"
+                className={styles.signupformBg}
+                style={{ display: display.otpPage }}
+            >
+                <Row>
+                    <Col md={6}></Col>
+                    <Col md={5}>
+                        <div className={cls('text-center', styles.signupBox)}>
+                            <h2 className={cls('text-center', 'pt-2', styles.signupTitle)}>
+                                OTP Verification
+                            </h2>
+                            <p style={{ fontSize: '14px' }}>
+                                OTP has been sent to <b>{user.email}</b>
+                            </p>
+
+                            <div className={styles.otpBoxDiv}>
+                                {otpBox.map((data, index) => {
+                                    return (
+                                        <input
+                                            type="text"
+                                            className={styles.otpField}
+                                            name="otp"
+                                            maxLength="1"
+                                            key={index}
+                                            value={data}
+                                            onChange={(e) => handleChange(e.target, index)}
+                                            onFocus={(e) => e.target.select()}
+                                        />
+                                    );
+                                })}
+                            </div>
+                            {otpUser && (
+                                <span style={{ color: 'red', fontSize: '14px' }}>
+                                    {otpUser.msg}
+                                </span>
+                            )}
+
+                            <div>
+                                <button
+                                    className={styles.otpVerify}
+                                    onClick={() => handleOTPSubmit()}
+                                >
+                                    Verify
+                                </button>
+                                <button
+                                    className={styles.otpVerify}
+                                    onClick={() => {
+                                        setOtpBox(new Array(4).fill(''));
+                                    }}
+                                >
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+                    </Col>
+                </Row>
+
+                <Dialog aria-labelledby="customized-dialog-title" open={open}>
+                    <DialogTitle id="customized-dialog-title">
+                        Account Activated Successfully!
+                    </DialogTitle>
+                    <DialogContent dividers>
+                        <Typography gutterBottom>
+                            Please Log In.
+                            <br />
+                        </Typography>
+                    </DialogContent>
+                    <DialogActions>
+                        <Link to="/signin">
+                            <button
+                                autoFocus
+                                onClick={handleClose}
+                                className="btn btn-primary sign-btn"
+                                id="close-btn"
+                            >
+                                OK
+                            </button>
+                        </Link>
+                    </DialogActions>
+                </Dialog>
+            </Container>
 
             {/* PRE-LOGIN CODE MODAL */}
             <Dialog
@@ -597,6 +945,31 @@ const SignupForm = () => {
                 </DialogActions>
             </Dialog>
             <Footer />
+            <Dialog aria-labelledby="customized-dialog-title" open={comingSoon}>
+                {/* <DialogTitle id="customized-dialog-title">Coming Soon!</DialogTitle> */}
+                <DialogContent dividers>
+                    <div>
+                        {/* <img  /> */}
+                        <Image
+                            src="/images/login-signup/comin_soon_png.png"
+                            alt="coming soon"
+                            height={443}
+                            width={375}
+                            effect="blur"
+                        />
+                        <p className={styles.comingSoonPara}>Coming Soon</p>
+                    </div>
+                </DialogContent>
+                <DialogActions>
+                    <button
+                        onClick={handleComingSoonClose}
+                        className={cls('btn', 'btn-primary', styles.comingSoonBtn, 'w-100')}
+                        id="close-btn"
+                    >
+                        OK
+                    </button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
 };
