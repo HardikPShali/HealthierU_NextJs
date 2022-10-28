@@ -1,0 +1,10 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 26" width="37" height="26">
+	<title>mail icon</title>
+	<defs>
+		<image  width="37" height="26" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAaCAMAAAAHbGVJAAAAAXNSR0IB2cksfwAAADxQTFRFAAAAANDMANDMANDMANDMANDMANDMANDMANDMANDMANDMANDMANDMANDMANDMANDMANDMANDMANDMANDMZsS1ZQAAABR0Uk5TAJn/ZtajPcJcpCngcBTrMx+PzHpDqxhJAAAAwElEQVR4nIXTbRODIAgAYKKVW2hm+///daSWrlD84HHcI+cLAgyojRFghJeCBjY4KdVmMAjI7N1DM0+s8LO0WURRIbaYSSgrWqyI3LxWipl/HtW4KaFTIY3bnTE6Q7iS4caGgiqFdlsrZCGgpJiFKt5RVgTXegtflBU5v7vIiCu5ICo68nniHZKT9pWzqeBaEn/qun3j/Rk97kt8osKUd5wq1UCFRdXuL8ONmlWnCTODPsoMFJQYaOhg/CE1dPzaH49SDGodFnZ0AAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<use id="Background" href="#img1" x="0" y="0" />
+</svg>

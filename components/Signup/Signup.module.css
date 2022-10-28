@@ -1,0 +1,71 @@
+.signupBg {
+  background-image: url(../../public/images/login-signup/signup.png);
+  background-size: cover;
+  background-position: center;
+  max-width: 100%;
+  padding: 5% 9%;
+}
+
+.signupTitle {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--primary);
+  text-align: left;
+  margin-left: 1rem;
+}
+
+.signupBox {
+  background: #fff;
+  border-radius: 22px;
+  padding: 13px 25px 23px 25px;
+  width: 90%;
+}
+
+.signupBtn {
+  width: 100%;
+  border-radius: 22px;
+  margin-top: 20px;
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  width: 100%;
+}
+
+.signupBtnWrap {
+  position: relative;
+}
+
+.signupIcon {
+  position: absolute;
+  left: 0;
+  width: 22px;
+  bottom: 3px;
+  filter: brightness(0.5);
+}
+
+.textDivider {
+  margin: 2em 0px;
+  line-height: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.textDivider span {
+  background-color: #fff;
+  padding: 10px;
+  position: relative;
+  color: var(--primary);
+  top: -3px;
+}
+
+.textDivider:before {
+  content: ' ';
+  display: block;
+  border-bottom: 1px solid var(--primary);
+}
+
+.signupText {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 12px;
+}
