@@ -120,6 +120,11 @@ a.carousel-control-next {
   background: #fff !important;
 }
 
+sup {
+  color: red;
+  padding: 2px;
+}
+
 @media screen and (max-width: 768px) {
   .carousel-caption {
     top: 10%;

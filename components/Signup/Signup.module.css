@@ -31,6 +31,12 @@
   width: 100%;
 }
 
+.signupBtn:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
 .signupBtnWrap {
   position: relative;
 }
@@ -68,4 +74,43 @@
   margin-top: 30px;
   text-align: center;
   font-size: 12px;
+}
+
+/* SIGNUP FORM */
+.signupformBg {
+  background-image: url(../../public/images/login-signup/signupform.png);
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  max-width: 100%;
+  padding: 5% 9%;
+  height: 132vh;
+}
+
+.inputStandardBasic {
+  border: none !important;
+  border-radius: 10px;
+  color: #000;
+  background: transparent;
+  width: 100%;
+  box-shadow: 0 0 3px rgb(0 0 0 / 19%);
+}
+
+.pwdSignupForm > div > input::-ms-reveal {
+  display: none;
+}
+
+.passValidation {
+  margin-bottom: 5px;
+  margin-top: 20px;
+  text-align: left;
+  color: #3e4543;
+  font-size: 10px;
+}
+
+.passValidation span {
+  padding-left: 5px;
+  vertical-align: 1px;
+  font-size: 11px;
+  display: -webkit-inline-box;
 }

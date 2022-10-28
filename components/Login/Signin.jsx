@@ -216,7 +216,7 @@ const Signin = () => {
 
   const responseGoogle = async (response) => {
     removeAllCookies();
-    setLoader(true);
+    // setLoader(true);
     storeGoogleToken(response);
     const googleUserData = {
       token: response.credential,
@@ -236,7 +236,7 @@ const Signin = () => {
       getCurrentUserData();
       // triggerFcmTokenHandler();
     }
-    setLoader(false);
+    // setLoader(false);
   };
 
   return (
