@@ -1,10 +1,10 @@
 import React from 'react'
-import PatientHomepage from '../../components/Patient'
+import PatientMainRoute from '../../components/Patient'
 
 const PatientIndex = () => {
     return (
         <div>PatientIndex
-            <PatientHomepage />
+            <PatientMainRoute />
         </div>
     )
 }

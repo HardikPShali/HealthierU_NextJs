@@ -1,0 +1,207 @@
+/* UPCOMING APPOINTMENTS SECTION */
+.upcoming-appointment__card-box {
+  border-radius: 22px;
+  color: #fff;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  text-shadow: 0px 0px 15px #000;
+}
+
+.upcoming-appointment--main-header {
+  margin-left: 5px;
+  color: var(--text-primary);
+  font-weight: 500;
+  text-shadow: none;
+  font-size: 1.2rem;
+}
+.no-appointments {
+  color: #3e4543;
+}
+.card-holder {
+  width: 100%;
+}
+
+.upcoming-appointment-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: 22px;
+  filter: drop-shadow(0px 9px 12px rgba(0, 0, 0, 0.08));
+  border-left: 3px solid var(--primary);
+  transition: all 0.2s;
+  box-shadow: 0px 0px 4px #e9e9e9;
+  margin-bottom: 2rem;
+}
+
+.upcoming-appointment-card:hover {
+  transition: all 0.2s;
+  border-left: 6px solid var(--primary);
+}
+
+.upcoming-appointment-card__completed {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: 22px;
+  filter: drop-shadow(0px 9px 12px rgba(0, 0, 0, 0.08));
+  border-left: 3px solid var(--primarysecond);
+  transition: all 0.2s;
+  box-shadow: 0px 0px 4px #e9e9e9;
+  margin-bottom: 2rem;
+}
+
+.upcoming-appointment-card__completed:hover {
+  transition: all 0.2s;
+  border-left: 6px solid var(--primarysecond);
+}
+
+.upcoming-appointment-card__cancelled {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: 22px;
+  filter: drop-shadow(0px 9px 12px rgba(0, 0, 0, 0.08));
+  border-left: 3px solid #ff0000;
+  transition: all 0.2s;
+  box-shadow: 0px 0px 4px #e9e9e9;
+  margin-bottom: 2rem;
+}
+
+.upcoming-appointment-card__cancelled:hover {
+  transition: all 0.2s;
+  border-left: 6px solid #ff0000;
+}
+
+.upcoming-appointment-card__img-wrapper {
+  padding: 20px;
+  text-align: center;
+}
+
+.upcoming_img-circle {
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-color: #fff !important;
+  border: 2px solid #00d0cc;
+}
+
+.upcoming-appointment-card__card-details {
+  margin: 10px;
+  color: #3e4543;
+}
+
+.upcoming-appointment-card__doctor-name {
+  text-shadow: none;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 6px;
+  text-transform: capitalize;
+  color: #3e4543;
+}
+
+.upcoming-appointment-card__common-span {
+  font-size: 0.7rem;
+  text-decoration: none;
+  text-shadow: none;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.upcoming-appointment-card__specality {
+  color: #3e4543;
+  font-size: 12px;
+  text-decoration: none;
+  text-shadow: none;
+  display: block;
+  font-weight: none;
+  margin-left: 2px;
+  font-weight: 400;
+  /* border: 1px solid none;
+    padding: 5px 10px;
+    border-radius: 12px;
+    background-color: #ECF8F7; */
+}
+
+.upcoming-appointment-card__card-details--date-div {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.upcoming-appointment-card__card-time-row > img {
+  width: 28px;
+  height: 28px;
+  margin-right: 4px;
+}
+
+.upcoming-appointments-avatar > .sb-avatar__text {
+  width: 70px !important;
+  height: 70px !important;
+  margin: 15px;
+  border: 2px solid #00d0cc;
+}
+
+/* MOBILE RESPONSIVE CSS */
+@media (min-width: 300px) and (max-width: 500px) {
+  .upcoming-appointment-card {
+    width: 100%;
+    height: 125px;
+  }
+  .upcoming-appointment-card__card-details {
+    margin-left: 100px;
+    top: 0;
+    left: 0;
+    transform: translate(0px, -50px);
+  }
+  .upcoming_img-circle {
+    margin: -25px;
+    width: 70px;
+    height: 70px;
+    top: 0;
+    left: 0;
+    transform: translate(0px, 10px);
+  }
+  .upcoming-appointment-card__card-time-row > img {
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 800px) {
+  .upcoming-appointment-card {
+    width: 100%;
+    height: 260px;
+  }
+  .upcoming-appointment-card__card-details {
+    margin-top: 20px;
+    top: 0;
+    left: 0;
+    transform: translate(-26px, 75px);
+  }
+  .upcoming-appointments-avatar > .sb-avatar__text {
+    margin: 15px 55px;
+  }
+  .upcoming_img-circle {
+    width: 70px;
+    height: 70px;
+    top: 0;
+    left: 0;
+    transform: translate(45px, 3px);
+  }
+}

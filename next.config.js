@@ -7,6 +7,9 @@ const nextConfig = {
   //   backendUrl: process.env.NEXT_PUBLIC_API_ENDPOINT,
   // },
   // experimental: { appDir: true }
+  images: {
+    domains: ['healthieru-dev.s3.amazonaws.com']
+  }
 }
 
 module.exports = nextConfig

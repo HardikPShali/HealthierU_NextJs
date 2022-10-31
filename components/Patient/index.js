@@ -1,24 +1,14 @@
-import { useRouter } from 'next/router';
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { logout } from '../../lib/redux/userSlice'
+import PatientHeader from './Header/PatientHeader';
+import PatientHomepage from './Homepage/PatientHomepage';
 
-const PatientHomepage = () => {
-    const dispatch = useDispatch();
-    const router = useRouter();
+const PatientMainRoute = () => {
 
-    const handleLogout = () => {
-        dispatch(logout())
-        router.push('/')
-    }
     return (
         <div>
-            logout
-            <button onClick={handleLogout}>
-                Logout
-            </button>
+            <PatientHeader />
+            <PatientHomepage />
         </div>
     )
 }
 
-export default PatientHomepage
+export default PatientMainRoute

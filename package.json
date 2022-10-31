@@ -19,6 +19,7 @@
     "bootstrap": "^5.2.2",
     "classnames": "^2.3.2",
     "mdbreact": "^5.2.0",
+    "moment": "^2.29.4",
     "next": "13.0.0",
     "react": "18.2.0",
     "react-bootstrap": "^2.5.0",
@@ -27,6 +28,7 @@
     "react-redux": "^8.0.4",
     "react-toastify": "^9.0.8",
     "redux-persist": "^6.0.0",
+    "styled-components": "^5.3.6",
     "universal-cookie": "^4.0.4",
     "validator": "^13.7.0"
   },
