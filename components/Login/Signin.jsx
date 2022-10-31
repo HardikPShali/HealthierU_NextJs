@@ -22,11 +22,16 @@ import LocalStorageService from '../../lib/utils/LocalStorageService';
 import GoogleSignInButton from './GoogleSignInButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../../lib/redux/userSlice';
+import TransparentLoader from '../Common/Loader/TransparentLoader';
+import Loader from '../Common/Loader/Loader';
 
 const Signin = () => {
   const router = useRouter();
   const cookies = new Cookies();
   const dispatch = useDispatch();
+
+  const [loader, setLoader] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [googleBtnWidth, setGoogleBtnWidth] = useState(500);
 
@@ -144,9 +149,9 @@ const Signin = () => {
           ...user,
           msg: 'Invalid email or password combination. Please try again',
         });
-        //setLoader(false);
+        setLoader(false);
       } else if (err.response && err.response.status === 401) {
-        //setLoader(false);
+        setLoader(false);
         handleActivateErrorOpen();
       }
     });
@@ -158,7 +163,7 @@ const Signin = () => {
 
   const handleLogin = async (e) => {
     //if (captchaVerify) {
-    //setLoader(true);
+    setLoader(true);
     const accountCheckResponse =
       await accountActivationCheckBeforeTokenGeneration(email).catch((err) =>
         console.log({ err })
@@ -169,7 +174,7 @@ const Signin = () => {
     if (accountCheckResponse.data.status === true) {
       handleSigninHandler();
     } else if (accountCheckResponse.data.data.registerAgain === true) {
-      ////setLoader(false);
+      // setLoader(false);
       toast.error(
         'Your account was not registered properly. Please register again.',
         {
@@ -185,7 +190,7 @@ const Signin = () => {
       accountCheckResponse.data.data.registerAgain === false &&
       accountCheckResponse.data.message === 'Your account has been deactivated'
     ) {
-      ////setLoader(false);
+      //setLoader(false);
       toast.error(
         'Your account has been deactivated. Please contact the administrator.',
         {
@@ -198,7 +203,7 @@ const Signin = () => {
       accountCheckResponse.data.message ===
       'Your account has been deactivated. Please contact administrator'
     ) {
-      ////setLoader(false);
+      //setLoader(false);
       toast.error(
         'Your account has been deactivated. Please contact the administrator.',
         {
@@ -213,13 +218,13 @@ const Signin = () => {
     ) {
       handleSigninHandler();
     } else if (accountCheckResponse.data.data.unrgistered === true) {
-      ////setLoader(false);
+      //setLoader(false);
       setUser({
         ...user,
         msg: 'Invalid email or password combination. Please try again',
       });
     } else {
-      ////setLoader(false);
+      //setLoader(false);
       toast.error('Something went wrong. Please try again.', {
         autoClose: 5000,
         hideProgressBar: true,
@@ -255,6 +260,8 @@ const Signin = () => {
 
   return (
     <div>
+      {loading && <Loader />}
+      {loader && <TransparentLoader />}
       <Header hideButton={true} />
       <div id="signin-bg" className={styles.signinBg}>
         <Container>
