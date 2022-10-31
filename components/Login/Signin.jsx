@@ -20,10 +20,13 @@ import { toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
 import LocalStorageService from '../../lib/utils/LocalStorageService';
 import GoogleSignInButton from './GoogleSignInButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout } from '../../lib/redux/userSlice';
 
 const Signin = () => {
   const router = useRouter();
   const cookies = new Cookies();
+  const dispatch = useDispatch();
 
   const [googleBtnWidth, setGoogleBtnWidth] = useState(500);
 
@@ -37,8 +40,11 @@ const Signin = () => {
   const { email, password, msg, otp } = user;
 
   useEffect(() => {
-    const width = document.getElementById('signinbtn').clientWidth;
-    setGoogleBtnWidth(width);
+    if (typeof window !== 'undefined') {
+      // You now have access to `window`
+      const width = document.getElementById('signinbtn').clientWidth;
+      setGoogleBtnWidth(width);
+    }
   }, []);
 
   const handleInputChange = (e) => {
@@ -85,24 +91,32 @@ const Signin = () => {
 
     const { authorities = [] } = currentUserInformation.data.userInfo || {};
 
-    delete currentUserInformation.data.role.languages;
-    delete currentUserInformation.data.role.bio;
-    delete currentUserInformation.data.role.specialities;
-    delete currentUserInformation.data.role.specialitiesList;
-    delete currentUserInformation.data.role.educationalQualifications;
+    // delete currentUserInformation.data.role.languages;
+    // delete currentUserInformation.data.role.bio;
+    // delete currentUserInformation.data.role.specialities;
+    // delete currentUserInformation.data.role.specialitiesList;
+    // delete currentUserInformation.data.role.educationalQualifications;
 
-    cookies.set('currentUser', currentUserInformation.data.userInfo, {
-      path: '/',
-    });
-    currentUserInformation.data.role.firebasePwd =
-      currentUserInformation.data.firebasePwd;
-    if (!currentUserInformation.data.role.email) {
-      currentUserInformation.data.role.email =
-        currentUserInformation.data.userInfo.email;
-    }
-    cookies.set('profileDetails', currentUserInformation.data.role, {
-      path: '/',
-    });
+    // cookies.set('currentUser', currentUserInformation.data.userInfo, {
+    //   path: '/',
+    // });
+    // currentUserInformation.data.role.firebasePwd =
+    //   currentUserInformation.data.firebasePwd;
+    // if (!currentUserInformation.data.role.email) {
+    //   currentUserInformation.data.role.email =
+    //     currentUserInformation.data.userInfo.email;
+    // }
+    // cookies.set('profileDetails', currentUserInformation.data.role, {
+    //   path: '/',
+    // });
+
+    dispatch(
+      login({
+        currentUser: currentUserInformation.data.userInfo,
+        profileDetails: currentUserInformation.data.role,
+      })
+    );
+
     if (
       authorities.some((user) => user === 'ROLE_ADMIN' || user === 'ROLE_USER')
     ) {

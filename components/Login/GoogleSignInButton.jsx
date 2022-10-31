@@ -14,24 +14,28 @@ const GoogleSignInButton = ({
   text = 'signin_with',
 }) => {
   useEffect(() => {
-    console.log('google btn width', width);
-    if (!window.google) {
-      googleInit()
-        .then(() => {
-          renderGoogleSignInBtn();
-        })
-        .catch(() => {
-          console.log('google script load error');
-          responseError('google script load error');
-        });
-    } else {
-      initGoogleButton();
+    if (typeof window !== 'undefined') {
+      console.log('google btn width', width);
+      if (!window.google) {
+        googleInit()
+          .then(() => {
+            renderGoogleSignInBtn();
+          })
+          .catch(() => {
+            console.log('google script load error');
+            responseError('google script load error');
+          });
+      } else {
+        initGoogleButton();
+      }
     }
   }, []);
 
   useEffect(() => {
-    if (window.google) {
-      initGoogleButton();
+    if (typeof window !== 'undefined') {
+      if (window.google) {
+        initGoogleButton();
+      }
     }
   }, [width, text, context, autoSelect]);
 

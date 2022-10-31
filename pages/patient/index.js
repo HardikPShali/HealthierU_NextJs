@@ -1,8 +1,11 @@
 import React from 'react'
+import PatientHomepage from '../../components/Patient'
 
 const PatientIndex = () => {
     return (
-        <div>PatientIndex</div>
+        <div>PatientIndex
+            <PatientHomepage />
+        </div>
     )
 }
 
