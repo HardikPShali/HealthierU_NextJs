@@ -1,8 +1,7 @@
 import moment from 'moment';
 import { getUnreadNotificationsCount, putMarkAsReadFromNotificationMenu } from '../../../../lib/service/FrontendApiServices';
 import Image from 'next/image';
-import Link from 'next/link';
-
+import styles from '../NotificationsMenuPatient.module.css'
 
 const StringNotifications = ({ notification, index, createdAtDisplayStyle }) => {
 
@@ -31,8 +30,8 @@ const StringNotifications = ({ notification, index, createdAtDisplayStyle }) => 
     return (
 
         <div key={index} onClick={() => markAsReadFromNotificationMenuHandler()}>
-            <div className="notif-section">
-                <div className="profile-img col-md-3">
+            <div className={styles.notifSection}>
+                <div className={styles.profileImage}>
                     {notification.data.appointmentDetails?.doctor?.picture ? (
                         <Image
                             alt="profile"
@@ -49,9 +48,7 @@ const StringNotifications = ({ notification, index, createdAtDisplayStyle }) => 
                     ) : (
                         <Image
                             alt="profile"
-                            src={
-                                notification.data.appointmentDetails?.doctor.picture
-                            }
+                            src='/images/default_image.jpg'
                             style={{
 
                                 borderRadius: '50%',
@@ -62,7 +59,7 @@ const StringNotifications = ({ notification, index, createdAtDisplayStyle }) => 
                     )}
                 </div>
                 <div className="notif-section__message">
-                    <div className="message-notif">
+                    <div className={styles.messageNotif}>
                         <span>{notification.data.message}</span>
                         <div style={createdAtDisplayStyle}>
                             <span

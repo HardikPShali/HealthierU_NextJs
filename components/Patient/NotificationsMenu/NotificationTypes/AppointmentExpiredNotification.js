@@ -32,7 +32,7 @@ const AppointmentExpiredNotification = ({ notification, index, createdAtDisplayS
     return (
         <div key={index} onClick={() => markAsReadFromNotificationMenuHandler()}>
             <div className={styles.notifSection}>
-                <div className="profile-img col-md-3">
+                <div className={styles.profileImage}>
                     {notification.data.appointmentDetails?.doctor?.picture ? (
                         <Image
                             alt="profile"
@@ -46,7 +46,8 @@ const AppointmentExpiredNotification = ({ notification, index, createdAtDisplayS
                     ) : (
                         <Image
                             alt="profile"
-                            src={notification.data.appointmentDetails?.doctor.picture}
+                            src='/images/default_image.jpg'
+
                             style={{
                                 borderRadius: '50%',
                             }}
