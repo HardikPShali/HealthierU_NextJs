@@ -3,7 +3,7 @@ import PatientMainRoute from '../../components/Patient'
 
 const PatientIndex = () => {
     return (
-        <div>PatientIndex
+        <div>
             <PatientMainRoute />
         </div>
     )
