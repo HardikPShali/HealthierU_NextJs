@@ -8,7 +8,7 @@ const nextConfig = {
   // },
   // experimental: { appDir: true }
   images: {
-    domains: ['healthieru-dev.s3.amazonaws.com']
+    domains: ['healthieru-dev.s3.amazonaws.com', 'images.unsplash.com']
   }
 }
 

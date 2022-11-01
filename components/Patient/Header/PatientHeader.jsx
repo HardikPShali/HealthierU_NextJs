@@ -126,7 +126,7 @@ const PatientHeader = () => {
                       <div className={styles.navMenuContainer}>
                         <ul className={styles.navMenuUl}>
                           <li>
-                            <Link href="/">Home</Link>
+                            <Link href="/patient">Home</Link>
                           </li>
                           <li>
                             <Link
@@ -312,7 +312,7 @@ const PatientHeader = () => {
         </label>
         <ul className={styles.menu}>
           <li>
-            <Link href="/">Home</Link>
+            <Link href="/patient">Home</Link>
           </li>
           <li>
             <Link
