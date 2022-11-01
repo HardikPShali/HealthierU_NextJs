@@ -81,7 +81,7 @@ svg#search-icon {
 
 .navMenuContainer ul li:nth-child(2) {
   list-style: none;
-  padding-right: 1rem;
+  padding-right: 0.5rem;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 

@@ -17,6 +17,7 @@ import {
 import styles from './PatientHeader.module.css';
 import cls from 'classnames';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import NotificationMenuPatient from '../NotificationsMenu/NotificationsMenuPatient';
 
 const PatientHeader = () => {
   const dispatch = useDispatch();
@@ -221,10 +222,7 @@ const PatientHeader = () => {
                                     className={cls(styles.notificationMenu)}
                                     style={{ width: '350px', left: '-160px' }}
                                   >
-                                    {/* <NotificationMenuPatient /> */}
-                                    <div>
-                                      <h1>Notification Menu</h1>
-                                    </div>
+                                    <NotificationMenuPatient />
                                   </div>
                                 </Menu>
                               </div>
@@ -395,10 +393,7 @@ const PatientHeader = () => {
                     className={cls(styles.notificationMenu)}
                     style={{ width: '350px', left: '-160px' }}
                   >
-                    {/* <NotificationMenuPatient /> */}
-                    <div>
-                      <h1>Notification Menu</h1>
-                    </div>
+                    <NotificationMenuPatient />
                   </div>
                 </Menu>
               </div>
