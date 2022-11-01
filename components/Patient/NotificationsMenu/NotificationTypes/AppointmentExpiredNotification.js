@@ -5,6 +5,7 @@ import {
 } from '../../../../lib/service/FrontendApiServices';
 import moment from 'moment';
 import Image from 'next/image';
+import styles from '../NotificationsMenuPatient.module.css'
 
 const AppointmentExpiredNotification = ({ notification, index, createdAtDisplayStyle }) => {
     //MARK AS READ NOTIFICATION LOGIC
@@ -30,7 +31,7 @@ const AppointmentExpiredNotification = ({ notification, index, createdAtDisplayS
 
     return (
         <div key={index} onClick={() => markAsReadFromNotificationMenuHandler()}>
-            <div className="notif-section">
+            <div className={styles.notifSection}>
                 <div className="profile-img col-md-3">
                     {notification.data.appointmentDetails?.doctor?.picture ? (
                         <Image
@@ -55,7 +56,7 @@ const AppointmentExpiredNotification = ({ notification, index, createdAtDisplayS
                     )}
                 </div>
                 <div className="notif-section__message">
-                    <div className="message-notif">
+                    <div className={styles.messageNotif}>
                         <span>
                             Your appointment with{' '}
                             {notification.data.appointmentDetails?.doctor.firstName}{' '}

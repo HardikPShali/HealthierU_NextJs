@@ -3,6 +3,7 @@ import moment from 'moment';
 import { getUnreadNotificationsCount, putMarkAsReadFromNotificationMenu } from '../../../../lib/service/FrontendApiServices';
 import Image from 'next/image';
 import Link from 'next/link';
+import styles from '../NotificationsMenuPatient.module.css'
 
 
 const RescheduleByDoctorNotification = ({
@@ -55,7 +56,7 @@ const RescheduleByDoctorNotification = ({
                 style={{ marginLeft: 0, marginTop: -16, fontWeight: 400 }}
             >
                 <div key={key}>
-                    <div className="notif-section">
+                    <div className={styles.notifSection}>
                         <div className="profile-img col-md-3">
                             {notification.data.appointmentDetails.doctor?.picture ? (
                                 <Image
@@ -82,7 +83,7 @@ const RescheduleByDoctorNotification = ({
                             )}
                         </div>
                         <div className="notif-section__message">
-                            <div className="message-notif">
+                            <div className={styles.messageNotif}>
                                 <span>
                                     Dr. {notification.data.appointmentDetails.doctor?.firstName}{' '}
                                     has requested to reschedule the appointment booked for{' '}

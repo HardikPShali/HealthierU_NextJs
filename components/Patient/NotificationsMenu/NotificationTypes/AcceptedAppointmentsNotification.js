@@ -1,39 +1,47 @@
 import React from 'react';
 import Image from 'next/image';
 import moment from 'moment';
-import { getUnreadNotificationsCount, putMarkAsReadFromNotificationMenu } from '../../../../lib/service/FrontendApiServices';
+import {
+  getUnreadNotificationsCount,
+  putMarkAsReadFromNotificationMenu,
+} from '../../../../lib/service/FrontendApiServices';
+import styles from '../NotificationsMenuPatient.module.css'
 
-const AcceptedAppointmentsNotification = ({ notification, index, createdAtDisplayStyle }) => {
-
+const AcceptedAppointmentsNotification = ({
+  notification,
+  index,
+  createdAtDisplayStyle,
+}) => {
   //MARK AS READ NOTIFICATION LOGIC
   const markAsReadFromNotificationMenuHandler = async () => {
-    const notificationId = notification.id
-    const userId = notification.userId
+    const notificationId = notification.id;
+    const userId = notification.userId;
 
     const data = {
       id: notificationId,
-    }
+    };
 
-    const response = await putMarkAsReadFromNotificationMenu(data, userId).catch(err => (console.log({ err })));
+    const response = await putMarkAsReadFromNotificationMenu(
+      data,
+      userId
+    ).catch((err) => console.log({ err }));
 
     if (response.data.status === true) {
       //   setBadgeCount(0);
       //   toast.success("Notification marked as read successfully");
       await getUnreadNotificationsCount(userId);
     }
-  }
-
+  };
 
   return (
     <div key={index} onClick={() => markAsReadFromNotificationMenuHandler()}>
-      <div className="notif-section">
+      <div className={styles.notifSection}>
         <div className="profile-img col-md-3">
           {notification.data.appointmentDetails?.doctor?.picture ? (
             <Image
               alt="profile"
               src={notification.data.appointmentDetails?.doctor.picture}
               style={{
-
                 borderRadius: '50%',
               }}
               height={50}
@@ -44,7 +52,6 @@ const AcceptedAppointmentsNotification = ({ notification, index, createdAtDispla
               alt="profile"
               src={notification.data.appointmentDetails?.doctor.picture}
               style={{
-
                 borderRadius: '50%',
               }}
               height={50}
@@ -53,18 +60,18 @@ const AcceptedAppointmentsNotification = ({ notification, index, createdAtDispla
           )}
         </div>
         <div className="notif-section__message">
-          <div className="message-notif">
+          <div className={styles.messageNotif}>
             <span>
-              Your appointment has been booked with {' '}
-              {notification.data.appointmentDetails?.doctor.firstName} for time {' '}
+              Your appointment has been booked with{' '}
+              {notification.data.appointmentDetails?.doctor.firstName} for time{' '}
               {moment(notification.data.appointmentDetails.startTime).format(
                 'HH:mm'
-              )}
-              {' '}
-              on {' '}
+              )}{' '}
+              on{' '}
               {moment(notification.data.appointmentDetails.startTime).format(
                 'DD-MM-YYYY'
-              )}.
+              )}
+              .
             </span>
 
             <div style={createdAtDisplayStyle}>
