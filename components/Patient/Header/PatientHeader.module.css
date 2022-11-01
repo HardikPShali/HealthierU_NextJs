@@ -108,6 +108,13 @@ svg#search-icon {
   font-weight: 400;
 }
 
+.profileIcon {
+  padding-right: 0 !important;
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+}
+
 /* Mobile navigation Navbar */
 
 .mobileNavHeader {
