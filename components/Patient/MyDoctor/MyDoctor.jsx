@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -7,8 +7,16 @@ import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import { Container, Row, Col } from 'react-bootstrap';
-import Head from 'next/head';
 import PatientHeader from '../Header/PatientHeader';
+import SearchBarComponent from '../../Common/SearchAndFilter/SearchBarComponent';
+import FilterBoxComponent from '../../Common/SearchAndFilter/FilterBoxComponent';
+import styles from './MyDoctor.module.css';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import Link from 'next/link';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+
+const rightArrow = <ArrowRightIcon />;
 
 const itemData = [
   {
@@ -85,41 +93,97 @@ const itemData = [
 ];
 
 const MyDoctor = () => {
+  const [display, setDisplay] = useState({
+    doctor: 'block',
+    appointment: 'none',
+    like: 'none',
+    unlike: 'block',
+    suggestion: 'none',
+  });
+
+  const getAllLikedDoctors = () => {
+    setDisplay({ ...display, like: 'block', unlike: 'none' });
+  };
+
+  const allDoctorData = () => {
+    setDisplay({ ...display, like: 'none', unlike: 'block' });
+  };
+
   return (
     <div>
-      <PatientHeader />
       <Container>
         <Row>
           <Col md={6} lg={4}>
-            <ImageList sx={{ width: 500, height: 450 }}>
-              <ImageListItem key="Subheader" cols={2}>
-                <ListSubheader component="div">December</ListSubheader>
-              </ImageListItem>
-              {itemData.map((item) => (
-                <ImageListItem key={item.img}>
-                  <Image
-                    src={`${item.img}?w=248&fit=crop&auto=format`}
-                    srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                    alt={item.title}
-                    loading="lazy"
-                    height={248}
-                    width={248}
-                  />
-                  <ImageListItemBar
-                    title={item.title}
-                    subtitle={item.author}
-                    actionIcon={
-                      <IconButton
-                        sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                        aria-label={`info about ${item.title}`}
-                      >
-                        <InfoIcon />
-                      </IconButton>
-                    }
-                  />
-                </ImageListItem>
-              ))}
-            </ImageList>
+            <div className={styles.doctorList}>
+              <div className={styles.toggleBar}>
+                <SearchBarComponent />
+                <FilterBoxComponent />
+                <IconButton
+                  style={{ display: display.unlike }}
+                  onClick={() => getAllLikedDoctors()}
+                >
+                  <FavoriteBorderIcon />
+                </IconButton>
+                <IconButton
+                  style={{ display: display.like }}
+                  onClick={() => allDoctorData()}
+                >
+                  <FavoriteIcon />
+                </IconButton>
+              </div>
+
+              <div>
+                <Link href="/patient/myappointment" id="menuLinks">
+                  <div id="card" className="card">
+                    <div className="card-body">
+                      My Appointments <span id="arrowright">{rightArrow}</span>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+
+              <div className={styles.cardList}>
+                <ImageList
+                  sx={{ width: 400, height: 420 }}
+                  style={{ overflowX: 'hidden' }}
+                >
+                  <ImageListItem
+                    key="Subheader"
+                    cols={2}
+                    style={{ width: '148px' }}
+                  >
+                    {/* <ListSubheader component="div">December</ListSubheader> */}
+                  </ImageListItem>
+                  {itemData.map((item) => (
+                    <ImageListItem
+                      key={item.img}
+                      style={{ width: '148px', marginLeft: 18 }}
+                    >
+                      <Image
+                        src={`${item.img}?w=248&fit=crop&auto=format`}
+                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                        alt={item.title}
+                        loading="lazy"
+                        height={148}
+                        width={148}
+                      />
+                      <ImageListItemBar
+                        title={item.title}
+                        subtitle={item.author}
+                        actionIcon={
+                          <IconButton
+                            sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
+                            aria-label={`info about ${item.title}`}
+                          >
+                            <InfoIcon />
+                          </IconButton>
+                        }
+                      />
+                    </ImageListItem>
+                  ))}
+                </ImageList>
+              </div>
+            </div>
           </Col>
         </Row>
       </Container>

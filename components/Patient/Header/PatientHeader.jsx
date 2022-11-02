@@ -109,7 +109,7 @@ const PatientHeader = () => {
         >
           <div className={styles.web_navigation_main}>
             <Container className={styles.web_navigation_content}>
-              <Link href="/">
+              <Link href="/patient">
                 <Image
                   className="header_logo-image"
                   src="/images/logo/logo-with-quote.png"

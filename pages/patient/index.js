@@ -5,6 +5,7 @@ import PatientHeader from '../../components/Patient/Header/PatientHeader'
 const PatientIndex = () => {
     return (
         <div>
+            <PatientHeader />
             <PatientMainRoute />
         </div>
     )

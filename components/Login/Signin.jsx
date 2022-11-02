@@ -1,5 +1,5 @@
-import Header from '../Common/Header/Header';
-import Footer from '../Common/Footer/Footer';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import Link from 'next/link';
 import { Container, Row, Col } from 'react-bootstrap';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
@@ -22,8 +22,8 @@ import LocalStorageService from '../../lib/utils/LocalStorageService';
 import GoogleSignInButton from './GoogleSignInButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../../lib/redux/userSlice';
-import TransparentLoader from '../Common/Loader/TransparentLoader';
-import Loader from '../Common/Loader/Loader';
+import TransparentLoader from '../Loader/TransparentLoader';
+import Loader from '../Loader/Loader';
 
 const Signin = () => {
   const router = useRouter();
