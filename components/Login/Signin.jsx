@@ -182,8 +182,6 @@ const Signin = () => {
         console.log({ err })
       );
 
-    console.log({ accountCheckResponse });
-
     if (accountCheckResponse.data.status === true) {
       handleSigninHandler();
     } else if (accountCheckResponse.data.data.registerAgain === true) {
