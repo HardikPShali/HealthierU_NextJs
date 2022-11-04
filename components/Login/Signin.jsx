@@ -1,5 +1,5 @@
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import Header from '../Common/Header/Header';
+import Footer from '../Common/Footer/Footer';
 import Link from 'next/link';
 import { Container, Row, Col } from 'react-bootstrap';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
@@ -22,8 +22,9 @@ import LocalStorageService from '../../lib/utils/LocalStorageService';
 import GoogleSignInButton from './GoogleSignInButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../../lib/redux/userSlice';
-import TransparentLoader from '../Loader/TransparentLoader';
-import Loader from '../Loader/Loader';
+import TransparentLoader from '../Common/Loader/TransparentLoader';
+import Loader from '../Common/Loader/Loader';
+import { CustomTextField } from '../Common/Reusable/TextField/CustomTextField';
 
 const Signin = () => {
   const router = useRouter();
@@ -32,6 +33,9 @@ const Signin = () => {
 
   const [loader, setLoader] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [emailLengthError, setEmailLengthError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   const [googleBtnWidth, setGoogleBtnWidth] = useState(500);
 
@@ -54,6 +58,8 @@ const Signin = () => {
 
   const handleInputChange = (e) => {
     e.preventDefault();
+    setEmailError(false);
+    setPasswordError(false);
     setUser({ ...user, [e.target.name]: e.target.value, msg: '' });
   };
 
@@ -86,6 +92,7 @@ const Signin = () => {
 
   const [currentUser, setCurrentUser] = useState();
   const getCurrentUserData = async () => {
+    setLoader(false);
     const currentUserInformation = await getCurrentUserInfo().catch((err) => {
       if (err.response.status === 500 || err.response.status === 504) {
         setLoading(false);
@@ -95,25 +102,6 @@ const Signin = () => {
     setCurrentUser(currentUserInformation.data.userInfo);
 
     const { authorities = [] } = currentUserInformation.data.userInfo || {};
-
-    // delete currentUserInformation.data.role.languages;
-    // delete currentUserInformation.data.role.bio;
-    // delete currentUserInformation.data.role.specialities;
-    // delete currentUserInformation.data.role.specialitiesList;
-    // delete currentUserInformation.data.role.educationalQualifications;
-
-    // cookies.set('currentUser', currentUserInformation.data.userInfo, {
-    //   path: '/',
-    // });
-    // currentUserInformation.data.role.firebasePwd =
-    //   currentUserInformation.data.firebasePwd;
-    // if (!currentUserInformation.data.role.email) {
-    //   currentUserInformation.data.role.email =
-    //     currentUserInformation.data.userInfo.email;
-    // }
-    // cookies.set('profileDetails', currentUserInformation.data.role, {
-    //   path: '/',
-    // });
 
     dispatch(
       login({
@@ -126,16 +114,13 @@ const Signin = () => {
       authorities.some((user) => user === 'ROLE_ADMIN' || user === 'ROLE_USER')
     ) {
       router.push('/admin');
-      // router.go(0);
     }
 
     if (authorities.some((user) => user === 'ROLE_PATIENT')) {
       router.push('/patient');
-      // router.go(0);
     }
     if (authorities.some((user) => user === 'ROLE_DOCTOR')) {
       router.push('/doctor');
-      // router.go(0);
     }
   };
 
@@ -161,15 +146,41 @@ const Signin = () => {
     }
   };
 
+  const emailAndPasswordValidation = () => {
+    const testedEmailExp = emailValidator.test(email);
+
+    if (password === '') {
+      setPasswordError(true);
+    }
+
+    if (email.length > 30) {
+      setEmailLengthError(true);
+      return false;
+    }
+
+    if (!testedEmailExp || email === '') {
+      setEmailError(true);
+      return false;
+    }
+
+    if (testedEmailExp) {
+      return true;
+    }
+  };
+
   const handleLogin = async (e) => {
     //if (captchaVerify) {
+    const emailValidationRes = emailAndPasswordValidation();
+
+    if (emailValidationRes === false) {
+      return;
+    }
+
     setLoader(true);
     const accountCheckResponse =
       await accountActivationCheckBeforeTokenGeneration(email).catch((err) =>
         console.log({ err })
       );
-
-    console.log({ accountCheckResponse });
 
     if (accountCheckResponse.data.status === true) {
       handleSigninHandler();
@@ -275,45 +286,47 @@ const Signin = () => {
                   onSubmit={(e) => handleLogin(e)}
                 >
                   <label
-                    style={{ fontSize: 12, color: '#ff9393' }}
+                    style={{
+                      fontSize: 13,
+                      color: '#ff9393',
+                      padding: '10px 0',
+                    }}
                     className="left"
                   >
                     {msg}
                   </label>
-                  <p>
-                    Email<sup>*</sup>
-                  </p>
-                  <TextValidator
-                    className={styles.inputStandardBasic}
+                  <CustomTextField
+                    variant="outlined"
+                    label="Email"
+                    fullWidth
+                    required
                     type="email"
                     name="email"
-                    onChange={(e) => handleInputChange(e)}
                     value={email}
-                    validators={[
-                      // "isValidEmail",
-                      'required',
-                      'maxStringLength:50',
-                    ]}
-                    errorMessages={[
-                      // "Please enter a valid email",
-                      'This field is required',
-                      'Email should not exceed 50 characters',
-                    ]}
-                    variant="filled"
+                    onChange={(e) => handleInputChange(e)}
+                    error={emailError || emailLengthError}
+                    helperText={
+                      emailError
+                        ? 'Please enter a valid email'
+                        : emailLengthError
+                        ? 'Email should not be greater than 30 characters'
+                        : ''
+                    }
                   />
                   <br />
-                  <p>
-                    Password<sup>*</sup>
-                  </p>
-                  <TextValidator
-                    className={styles.inputStandardBasic}
-                    name="password"
+                  <CustomTextField
                     type={passwordShown ? 'text' : 'password'}
                     onChange={(e) => handleInputChange(e)}
                     value={password}
-                    validators={['required']}
-                    errorMessages={['This field is required']}
-                    variant="filled"
+                    variant="outlined"
+                    label="Password"
+                    name="password"
+                    fullWidth
+                    required
+                    error={passwordError}
+                    helperText={
+                      passwordError ? 'Password field cannot be blank' : ''
+                    }
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">
@@ -332,9 +345,12 @@ const Signin = () => {
                       ),
                     }}
                   />
-                  <Link href="/forget-password" className={styles.forgetText}>
-                    Forgot password?
-                  </Link>
+                  <div style={{ width: 110, float: 'right' }}>
+                    <Link href="/forget-password" className={styles.forgetText}>
+                      Forgot password?
+                    </Link>
+                  </div>
+
                   <input
                     id="signinbtn"
                     className={cls('btn', styles.signBtn, 'shadow-sm')}
