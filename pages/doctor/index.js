@@ -5,7 +5,7 @@ import { selectUser } from "../../lib/redux/userSlice"
 
 const index = () => {
     return (
-        <div>Doctor index
+        <div>
             <DoctorMainRoute />
         </div>
     )

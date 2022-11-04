@@ -1,0 +1,92 @@
+  /* AppointmentCount SECTION */
+  .appointment_card_header {
+      margin-left: 5px;
+      color      : #3e4543;
+      font-weight: 400;
+      text-shadow: none;
+      font-size  : 28px;
+  }
+
+  .page_contain {
+      display        : flex;
+      justify-content: space-between;
+  }
+
+  .data_card {
+      display        : flex;
+      flex-direction : row;
+      width          : 100%;
+      min-height     : 40%;
+      overflow       : hidden;
+      border-radius  : 0.5em;
+      text-decoration: none;
+      background     : var(--primary);
+      margin         : 0.5rem;
+      padding        : 0.75em 0.8em;
+      box-shadow     : 0 1.5em 2.5em -0.5em rgba(#000000, 0.1);
+  }
+
+  .data_card__helper {
+      padding: 0 20px;
+  }
+
+  .data_card1 {
+      display        : flex;
+      flex-direction : row;
+      width          : 100%;
+      min-height     : 40%;
+      overflow       : hidden;
+      border-radius  : 0.5em;
+      text-decoration: none;
+      background     : #ffc9ae;
+      margin         : 0.5rem;
+      padding        : 0.75em 0.8em;
+      box-shadow     : 0 1.5em 2.5em -0.5em rgba(#000000, 0.1);
+  }
+
+  .appointment_count_h3 {
+      color         : #ffffff;
+      font-size     : 2.5em;
+      font-weight   : 400;
+      line-height   : 1;
+      padding-bottom: 0.5em;
+      margin        : 0 0 0.142857143em;
+      transition    : color 0.45s ease, border 0.45s ease;
+  }
+
+  .appointment_count_h3 {
+      color         : #ffffff;
+      font-size     : 3.5em;
+      font-weight   : 400;
+      line-height   : 1;
+      padding-bottom: 0.5em;
+      margin        : 0 0 0.142857143em;
+      transition    : color 0.45s ease, border 0.45s ease;
+  }
+
+  .appointment_count_h4 {
+      color         : #ffffff;
+      text-transform: uppercase;
+      font-size     : 1.2rem;
+      font-weight   : 400;
+      line-height   : 1;
+      letter-spacing: 0.1em;
+      transition    : color 0.45s ease;
+  }
+
+  .appointment_count_title {
+      color       : #ffffff;
+      font-size   : 20px;
+      font-weight : 600;
+      padding-left: 15px;
+  }
+
+  .appointment_count_p {
+      opacity    : 0;
+      color      : #ffffff;
+      font-weight: 600;
+      line-height: 1.8;
+      margin     : 0 0 1.25em;
+      transform  : translateY(-1em);
+      transition : opacity 0.45s ease, transform 0.5s ease;
+  }
