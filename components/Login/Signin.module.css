@@ -33,9 +33,10 @@
 
 .forgetText {
   text-align: right;
-  font-size: 12px;
+  font-size: 13px;
   display: block;
   color: #3e4543 !important;
+  padding-top: 10px;
 }
 
 .signBtn {

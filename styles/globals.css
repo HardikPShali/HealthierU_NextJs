@@ -91,7 +91,7 @@ a.carousel-control-next {
   padding: 0 !important;
 }
 
-.MuiFilledInput-input,
+/* .MuiFilledInput-input,
 .MuiFilledInput-underline {
   padding: 5px !important;
   border-radius: 10px;
@@ -119,7 +119,7 @@ a.carousel-control-next {
 .MuiFilledInput-input:visited,
 .MuiFilledInput-underline:visited {
   background: #fff !important;
-}
+} */
 
 sup {
   color: red;
@@ -138,7 +138,7 @@ sup {
     top: 0%;
   }
 }
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
@@ -147,4 +147,4 @@ sup {
     background: black;
     scroll-behavior: smooth;
   }
-}
+} */
