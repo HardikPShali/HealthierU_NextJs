@@ -1,0 +1,13 @@
+/* NOTIFICATION_MENU */
+.notifSection {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.messageNotif {
+  display: flex;
+  flex-direction: column;
+  margin: 2px 10px;
+}
