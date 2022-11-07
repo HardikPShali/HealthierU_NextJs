@@ -153,7 +153,7 @@ const Signin = () => {
       setPasswordError(true);
     }
 
-    if (email.length > 30) {
+    if (email.length > 50) {
       setEmailLengthError(true);
       return false;
     }
@@ -309,7 +309,7 @@ const Signin = () => {
                       emailError
                         ? 'Please enter a valid email'
                         : emailLengthError
-                        ? 'Email should not be greater than 30 characters'
+                        ? 'Email should not be greater than 50 characters'
                         : ''
                     }
                   />

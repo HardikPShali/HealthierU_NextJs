@@ -197,11 +197,11 @@ const PatientHeader = () => {
                                   color="inherit"
                                   type="button"
                                   data-toggle="dropdown"
+                                  onClick={handleNotifMenuDropdown}
                                 >
                                   <Badge
                                     badgeContent={badgeCount}
                                     color="secondary"
-                                    onClick={handleNotifMenuDropdown}
                                   >
                                     <NotificationsIcon />
                                   </Badge>
@@ -368,12 +368,9 @@ const PatientHeader = () => {
                   color="inherit"
                   type="button"
                   data-toggle="dropdown"
+                  onClick={handleNotifMenuDropdown}
                 >
-                  <Badge
-                    badgeContent={badgeCount}
-                    color="secondary"
-                    onClick={handleNotifMenuDropdown}
-                  >
+                  <Badge badgeContent={badgeCount} color="secondary">
                     <NotificationsIcon />
                   </Badge>
                 </IconButton>

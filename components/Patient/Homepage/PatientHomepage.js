@@ -1,4 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
+import { CustomSelectField } from '../../Common/Reusable/SelectField/CustomSelectField';
 import UpcomingAppointments from '../../Common/UpcomingAppointments/UpcomingAppointments';
 
 const PatientHomepage = () => {
@@ -7,7 +8,6 @@ const PatientHomepage = () => {
             <div>
                 <br />
                 <br />
-                <h1>Homepage</h1>
                 <Container>
                     <Row>
                         <Col md={6}>
