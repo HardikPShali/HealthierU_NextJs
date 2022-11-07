@@ -157,7 +157,7 @@ const PatientHeader = () => {
                                   <MenuItem>My Doctors</MenuItem>
                                 </Link>
                                 <Link
-                                  href="/patient/myappointment"
+                                  href="/patient/my-appointment"
                                   className="dropdown-item"
                                 >
                                   <MenuItem>My Appointments</MenuItem>
@@ -339,7 +339,7 @@ const PatientHeader = () => {
                 <Link href="/patient/mydoctor" className="dropdown-item">
                   <MenuItem>My Doctors</MenuItem>
                 </Link>
-                <Link href="/patient/myappointment" className="dropdown-item">
+                <Link href="/patient/my-appointment" className="dropdown-item">
                   <MenuItem>My Appointments</MenuItem>
                 </Link>
                 <Link href="/patient/document" className="dropdown-item">
