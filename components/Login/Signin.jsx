@@ -273,7 +273,6 @@ const Signin = () => {
     <div>
       {loading && <Loader />}
       {loader && <TransparentLoader />}
-      <Header hideButton={true} />
       <div id="signin-bg" className={styles.signinBg}>
         <Container>
           <Row>

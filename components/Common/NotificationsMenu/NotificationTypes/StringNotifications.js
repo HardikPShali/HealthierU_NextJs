@@ -1,10 +1,9 @@
 import moment from 'moment';
 import { getUnreadNotificationsCount, putMarkAsReadFromNotificationMenu } from '../../../../lib/service/FrontendApiServices';
 import Image from 'next/image';
-import Link from 'next/link';
+import styles from '../NotificationsMenuPatient.module.css'
 
-
-const StringNotifications = ({ notification, index, createdAtDisplayStyle, role }) => {
+const StringNotifications = ({ notification, index, createdAtDisplayStyle }) => {
 
     //MARK AS READ NOTIFICATION LOGIC
     const markAsReadFromNotificationMenuHandler = async () => {
@@ -31,9 +30,9 @@ const StringNotifications = ({ notification, index, createdAtDisplayStyle, role 
     return (
 
         <div key={index} onClick={() => markAsReadFromNotificationMenuHandler()}>
-            <div className="notif-section">
-                <div className="profile-img col-md-3">
-                    {role === 'ROLE_DOCTOR' ? (notification.data.appointmentDetails?.doctor?.picture ? (
+            <div className={styles.notifSection}>
+                <div className={styles.profileImage}>
+                    {notification.data.appointmentDetails?.doctor?.picture ? (
                         <Image
                             alt="profile"
                             src={
@@ -49,9 +48,7 @@ const StringNotifications = ({ notification, index, createdAtDisplayStyle, role 
                     ) : (
                         <Image
                             alt="profile"
-                            src={
-                                notification.data.appointmentDetails?.doctor.picture
-                            }
+                            src='/images/default_image.jpg'
                             style={{
 
                                 borderRadius: '50%',
@@ -59,38 +56,10 @@ const StringNotifications = ({ notification, index, createdAtDisplayStyle, role 
                             height={50}
                             width={50}
                         />
-                    )) : (
-                        notification.data.appointmentDetails?.patient?.picture ? (
-                            <Image
-                                alt="profile"
-                                src={
-                                    notification.data.appointmentDetails?.docpatienttor.picture
-                                }
-                                style={{
-
-                                    borderRadius: '50%',
-                                }}
-                                height={50}
-                                width={50}
-                            />
-                        ) : (
-                            <Image
-                                alt="profile"
-                                src={
-                                    notification.data.appointmentDetails?.patient.picture
-                                }
-                                style={{
-
-                                    borderRadius: '50%',
-                                }}
-                                height={50}
-                                width={50}
-                            />
-                        )
                     )}
                 </div>
                 <div className="notif-section__message">
-                    <div className="message-notif">
+                    <div className={styles.messageNotif}>
                         <span>{notification.data.message}</span>
                         <div style={createdAtDisplayStyle}>
                             <span

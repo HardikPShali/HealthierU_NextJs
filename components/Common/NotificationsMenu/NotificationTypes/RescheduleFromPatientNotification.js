@@ -3,13 +3,14 @@ import moment from 'moment';
 import { getUnreadNotificationsCount, putMarkAsReadFromNotificationMenu } from '../../../../lib/service/FrontendApiServices';
 import Image from 'next/image';
 import Link from 'next/link';
+import styles from '../NotificationsMenuPatient.module.css'
 
 const RescheduleFromPatientNotification = ({ notification, key, createdAtDisplayStyle }) => {
     return (
         <div>
             <div key={key}>
-                <div className="notif-section">
-                    <div className="profile-img col-md-3">
+                <div className={styles.notifSection}>
+                    <div className={styles.profileImage}>
                         {notification.data.appointmentDetails.doctor?.picture ? (
                             <Image
                                 alt="profile"
@@ -24,7 +25,7 @@ const RescheduleFromPatientNotification = ({ notification, key, createdAtDisplay
                         ) : (
                             <Image
                                 alt="profile"
-                                src={notification.data.appointmentDetails.doctor.picture}
+                                src='/images/default_image.jpg'
                                 style={{
 
                                     borderRadius: '50%',
@@ -35,7 +36,7 @@ const RescheduleFromPatientNotification = ({ notification, key, createdAtDisplay
                         )}
                     </div>
                     <div className="notif-section__message">
-                        <div className="message-notif">
+                        <div className={styles.messageNotif}>
                             <span>
 
                                 Appointment is rescheduled on{' '}
