@@ -6,7 +6,6 @@ import ImageListItemBar from '@mui/material/ImageListItemBar';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import { Container, Row, Col } from 'react-bootstrap';
-import PatientHeader from '../Header/PatientHeader';
 import SearchBarComponent from '../../Common/SearchAndFilter/SearchBarComponent';
 import FilterBoxComponent from '../../Common/SearchAndFilter/FilterBoxComponent';
 import styles from './MyDoctor.module.css';

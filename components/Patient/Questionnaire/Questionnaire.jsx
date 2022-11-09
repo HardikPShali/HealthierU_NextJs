@@ -1,10 +1,17 @@
 import { useState, useEffect } from 'react';
 import quesJson from './questions.json';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
 import { Questions } from './Questions';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../lib/redux/userSlice';
 import { useRouter } from 'next/router';
+import { ToastContainer, toast } from 'react-toastify';
+import { postHealthAssessment } from '../../../lib/service/FrontendApiServices';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const Questionnaire = () => {
   const router = useRouter();
@@ -164,9 +171,9 @@ const Questionnaire = () => {
   const closeDialog = () => {
     setContinueClick(false);
     if (isNew === 'new') {
-      history.push('/patient');
+      router.push('/patient');
     } else {
-      history.push('/patient/mydoctor');
+      router.push('/patient/mydoctor');
     }
   };
 
@@ -201,7 +208,7 @@ const Questionnaire = () => {
                 />
               ))}
           </div>
-          {/* <div className="questionnaire-continue-button">
+          <div className="questionnaire-continue-button">
             <Button
               type="submit"
               variant="primary"
@@ -221,9 +228,49 @@ const Questionnaire = () => {
               draggable
               pauseOnHover
             />
-          </div> */}
+          </div>
         </Col>
       </Row>
+      <Dialog
+        onClose={closeDialog}
+        aria-labelledby="customized-dialog-title"
+        open={continueClick}
+      >
+        <DialogTitle id="customized-dialog-title" onClose={closeDialog}>
+          Assessment Based on Score
+        </DialogTitle>
+
+        <DialogContent>
+          <div className="score-text">
+            <span
+              style={{
+                fontSize: '20px',
+                marginBottom: '20px',
+              }}
+            >
+              {/* You scored {totalscore} */}
+            </span>
+            {healthAssess ? (
+              <h5>You are {healthAssess}</h5>
+            ) : (
+              <h6>Loading assessment...</h6>
+            )}
+          </div>
+        </DialogContent>
+
+        <DialogActions>
+          <div className="score-modal-btn-wrapper">
+            <button
+              autoFocus={false}
+              onClick={closeDialog}
+              className="btn btn-primary"
+              id="close-btn"
+            >
+              Connect with an Expert
+            </button>
+          </div>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 };
