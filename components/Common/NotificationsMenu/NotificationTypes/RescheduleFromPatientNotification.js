@@ -4,45 +4,85 @@ import { getUnreadNotificationsCount, putMarkAsReadFromNotificationMenu } from '
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../NotificationsMenuPatient.module.css'
+import { useSelector } from 'react-redux';
+import { selectRole } from '../../../../lib/redux/userSlice';
+import useRole from '../../../../lib/custom-hooks/useRole';
 
 const RescheduleFromPatientNotification = ({ notification, key, createdAtDisplayStyle }) => {
+
+    const role = useSelector(selectRole)
+    const roleName = useRole(role)
+
     return (
         <div>
             <div key={key}>
                 <div className={styles.notifSection}>
                     <div className={styles.profileImage}>
-                        {notification.data.appointmentDetails.doctor?.picture ? (
-                            <Image
-                                alt="profile"
-                                src={notification.data.appointmentDetails.doctor.picture}
-                                style={{
-
-                                    borderRadius: '50%',
-                                }}
-                                height={50}
-                                width={50}
-                            />
-                        ) : (
-                            <Image
-                                alt="profile"
-                                src='/images/default_image.jpg'
-                                style={{
-
-                                    borderRadius: '50%',
-                                }}
-                                height={50}
-                                width={50}
-                            />
-                        )}
+                        {
+                            roleName === 'patient' && (
+                                notification.data.appointmentDetails?.doctor?.picture ? (
+                                    <Image
+                                        alt="profile"
+                                        src={notification.data.appointmentDetails?.doctor.picture}
+                                        style={{
+                                            borderRadius: '50%',
+                                        }}
+                                        height={50}
+                                        width={50}
+                                    />
+                                ) : (
+                                    <Image
+                                        alt="profile"
+                                        src='/images/default_image.jpg'
+                                        style={{
+                                            borderRadius: '50%',
+                                        }}
+                                        height={50}
+                                        width={50}
+                                    />
+                                )
+                            )
+                        }
+                        {
+                            roleName === 'doctor' && (
+                                notification.data.appointmentDetails?.patient?.picture ? (
+                                    <Image
+                                        alt="profile"
+                                        src={notification.data.appointmentDetails?.patient.picture}
+                                        style={{
+                                            borderRadius: '50%',
+                                        }}
+                                        height={50}
+                                        width={50}
+                                    />
+                                ) : (
+                                    <Image
+                                        alt="profile"
+                                        src='/images/default_image.jpg'
+                                        style={{
+                                            borderRadius: '50%',
+                                        }}
+                                        height={50}
+                                        width={50}
+                                    />
+                                )
+                            )
+                        }
                     </div>
                     <div className="notif-section__message">
                         <div className={styles.messageNotif}>
                             <span>
 
-                                Appointment is rescheduled on{' '}
+                                You have an appointment rescheduled on{' '}
                                 {moment(notification.data.appointmentDetails.startTimeAsString).format(
                                     'DD-MM-YYYY HH:mm'
                                 )}{' '}
+                                {
+                                    roleName === 'patient' && (notification.data.appointmentDetails?.doctor.firstName)
+                                }{' '}
+                                {
+                                    roleName === 'doctor' && (notification.data.appointmentDetails?.patient.firstName)
+                                }{' '}
                             </span>
                             <div style={createdAtDisplayStyle}>
                                 <span

@@ -20,8 +20,8 @@ import { toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
 import LocalStorageService from '../../lib/utils/LocalStorageService';
 import GoogleSignInButton from './GoogleSignInButton';
-import { useDispatch, useSelector } from 'react-redux';
-import { login, logout } from '../../lib/redux/userSlice';
+import { useDispatch } from 'react-redux';
+import { login, role } from '../../lib/redux/userSlice';
 import TransparentLoader from '../Common/Loader/TransparentLoader';
 import Loader from '../Common/Loader/Loader';
 import { CustomTextField } from '../Common/Reusable/TextField/CustomTextField';
@@ -109,6 +109,8 @@ const Signin = () => {
         profileDetails: currentUserInformation.data.role,
       })
     );
+
+    dispatch(role(currentUserInformation.data.userInfo.authorities[0]));
 
     if (
       authorities.some((user) => user === 'ROLE_ADMIN' || user === 'ROLE_USER')

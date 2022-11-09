@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import AcceptedAppointmentsNotification from './NotificationTypes/AcceptedAppointmentsNotification';
 import AppointmentExpiredNotification from './NotificationTypes/AppointmentExpiredNotification';
-import CancelledByDoctorNotifications from './NotificationTypes/CancelledByDoctorNotifications';
+import AppointmentCancelledNotifications from './NotificationTypes/AppointmentCancelledNotifications';
 // import NextAppointmentNotifications from './NotificationTypes/NextAppointmentNotifications';
 import RescheduleByDoctorNotification from './NotificationTypes/RescheduleByDoctorNotification';
 import RescheduleFromPatientNotification from './NotificationTypes/RescheduleFromPatientNotification';
@@ -95,10 +95,10 @@ const NotificationsMenu = () => {
                                 );
                             }
 
-                            if (notification.type === 'APPT_CANCELLED_BY_DOCTOR') {
+                            if (notification.type === 'APPT_CANCELLED_BY_DOCTOR' || notification.type === 'APPT_CANCELLED_BY_PATIENT') {
                                 return (
                                     <div key={index}>
-                                        <CancelledByDoctorNotifications
+                                        <AppointmentCancelledNotifications
                                             notification={notification}
                                             index={index}
                                             createdAtDisplayStyle={createdAtDisplayStyle}
@@ -110,7 +110,7 @@ const NotificationsMenu = () => {
                             if (notification.type === 'APPT_CANCELLED_BY_DOCTOR_TOGGLE') {
                                 return (
                                     <div key={index}>
-                                        <CancelledByDoctorNotifications
+                                        <AppointmentCancelledNotifications
                                             notification={notification}
                                             index={index}
                                             createdAtDisplayStyle={createdAtDisplayStyle}

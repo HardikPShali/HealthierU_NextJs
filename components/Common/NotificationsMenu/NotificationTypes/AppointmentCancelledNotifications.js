@@ -1,15 +1,17 @@
+import React from 'react';
 import moment from 'moment';
 import { getUnreadNotificationsCount, putMarkAsReadFromNotificationMenu } from '../../../../lib/service/FrontendApiServices';
-import Image from 'next/image';
 import styles from '../NotificationsMenuPatient.module.css'
+import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { selectRole } from '../../../../lib/redux/userSlice';
 import useRole from '../../../../lib/custom-hooks/useRole';
 
-const StringNotifications = ({ notification, index, createdAtDisplayStyle }) => {
-
+const AppointmentCancelledNotifications = ({ notification, index, createdAtDisplayStyle }) => {
     const role = useSelector(selectRole)
     const roleName = useRole(role)
+
+    console.log({ notification })
 
     //MARK AS READ NOTIFICATION LOGIC
     const markAsReadFromNotificationMenuHandler = async () => {
@@ -24,7 +26,6 @@ const StringNotifications = ({ notification, index, createdAtDisplayStyle }) => 
             data,
             userId
         ).catch((err) => console.log({ err }));
-        console.log({ markAsReadFromNotificationMenuHandler: response });
 
         if (response.data.status === true) {
             //   setBadgeCount(0);
@@ -34,7 +35,6 @@ const StringNotifications = ({ notification, index, createdAtDisplayStyle }) => 
     };
 
     return (
-
         <div key={index} onClick={() => markAsReadFromNotificationMenuHandler()}>
             <div className={styles.notifSection}>
                 <div className={styles.profileImage}>
@@ -91,7 +91,23 @@ const StringNotifications = ({ notification, index, createdAtDisplayStyle }) => 
                 </div>
                 <div className="notif-section__message">
                     <div className={styles.messageNotif}>
-                        <span>{notification.data.message}</span>
+                        <span>
+                            Your appointment with{' '}
+                            {
+                                roleName === 'patient' && (notification.data.appointmentDetails?.doctor.firstName)
+                            }{' '}
+                            {
+                                roleName === 'doctor' && (notification.data.appointmentDetails?.patient.firstName)
+                            }{' '} is
+                            cancelled for the time{' '}
+                            {moment(notification.data.appointmentDetails.startTime).format(
+                                'HH:mm'
+                            )}{' '}
+                            on{' '}
+                            {moment(notification.data.appointmentDetails.startTime).format(
+                                'DD-MM-YYYY'
+                            )}
+                        </span>
                         <div style={createdAtDisplayStyle}>
                             <span
                                 style={{
@@ -116,8 +132,7 @@ const StringNotifications = ({ notification, index, createdAtDisplayStyle }) => 
             </div>
             <hr />
         </div>
+    );
+};
 
-    )
-}
-
-export default StringNotifications
+export default AppointmentCancelledNotifications;

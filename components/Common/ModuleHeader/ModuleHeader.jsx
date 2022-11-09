@@ -8,7 +8,7 @@ import Badge from '@mui/material/Badge';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout, selectUser } from '../../../lib/redux/userSlice';
+import { logout, selectRole, selectUser } from '../../../lib/redux/userSlice';
 import { useState, useEffect } from 'react';
 import {
   getUnreadNotificationsCount,
@@ -18,19 +18,16 @@ import styles from './ModuleHeader.module.css';
 import cls from 'classnames';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import NotificationsMenu from '../NotificationsMenu/NotificationsMenu';
+import useRole from '../../../lib/custom-hooks/useRole';
 
 const ModuleHeader = () => {
   const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
+  const role = useSelector(selectRole);
   const currentUser = user?.profileDetails;
 
-  const role = user?.currentUser.authorities[0];
-  const roleName = role?.includes('ROLE_DOCTOR')
-    ? 'doctor'
-    : role?.includes('ROLE_PATIENT')
-    ? 'patient'
-    : 'admin';
+  const roleName = useRole(role);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorElMyPortal, setAnchorElMyPortal] = useState(null);

@@ -6,12 +6,19 @@ import {
   putMarkAsReadFromNotificationMenu,
 } from '../../../../lib/service/FrontendApiServices';
 import styles from '../NotificationsMenuPatient.module.css'
+import { useSelector } from 'react-redux';
+import { selectRole } from '../../../../lib/redux/userSlice';
+import useRole from '../../../../lib/custom-hooks/useRole';
 
 const AcceptedAppointmentsNotification = ({
   notification,
   index,
   createdAtDisplayStyle,
 }) => {
+
+  const role = useSelector(selectRole)
+  const roleName = useRole(role)
+
   //MARK AS READ NOTIFICATION LOGIC
   const markAsReadFromNotificationMenuHandler = async () => {
     const notificationId = notification.id;
@@ -37,33 +44,68 @@ const AcceptedAppointmentsNotification = ({
     <div key={index} onClick={() => markAsReadFromNotificationMenuHandler()}>
       <div className={styles.notifSection}>
         <div className={styles.profileImage}>
-          {notification.data.appointmentDetails?.doctor?.picture ? (
-            <Image
-              alt="profile"
-              src={notification.data.appointmentDetails?.doctor.picture}
-              style={{
-                borderRadius: '50%',
-              }}
-              height={50}
-              width={50}
-            />
-          ) : (
-            <Image
-              alt="profile"
-              src='/images/default_image.jpg'
-              style={{
-                borderRadius: '50%',
-              }}
-              height={50}
-              width={50}
-            />
-          )}
+          {
+            roleName === 'patient' && (
+              notification.data.appointmentDetails?.doctor?.picture ? (
+                <Image
+                  alt="profile"
+                  src={notification.data.appointmentDetails?.doctor.picture}
+                  style={{
+                    borderRadius: '50%',
+                  }}
+                  height={50}
+                  width={50}
+                />
+              ) : (
+                <Image
+                  alt="profile"
+                  src='/images/default_image.jpg'
+                  style={{
+                    borderRadius: '50%',
+                  }}
+                  height={50}
+                  width={50}
+                />
+              )
+            )
+          }
+          {
+            roleName === 'doctor' && (
+              notification.data.appointmentDetails?.patient?.picture ? (
+                <Image
+                  alt="profile"
+                  src={notification.data.appointmentDetails?.patient.picture}
+                  style={{
+                    borderRadius: '50%',
+                  }}
+                  height={50}
+                  width={50}
+                />
+              ) : (
+                <Image
+                  alt="profile"
+                  src='/images/default_image.jpg'
+                  style={{
+                    borderRadius: '50%',
+                  }}
+                  height={50}
+                  width={50}
+                />
+              )
+            )
+          }
         </div>
         <div className="notif-section__message">
           <div className={styles.messageNotif}>
             <span>
               Your appointment has been booked with{' '}
-              {notification.data.appointmentDetails?.doctor.firstName} for time{' '}
+              {
+                roleName === 'patient' && (notification.data.appointmentDetails?.doctor.firstName)
+              }{' '}
+              {
+                roleName === 'doctor' && (notification.data.appointmentDetails?.patient.firstName)
+              }{' '}
+              for time{' '}
               {moment(notification.data.appointmentDetails.startTime).format(
                 'HH:mm'
               )}{' '}
