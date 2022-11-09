@@ -11,8 +11,6 @@ const AppointmentCancelledNotifications = ({ notification, index, createdAtDispl
     const role = useSelector(selectRole)
     const roleName = useRole(role)
 
-    console.log({ notification })
-
     //MARK AS READ NOTIFICATION LOGIC
     const markAsReadFromNotificationMenuHandler = async () => {
         const notificationId = notification.id;
