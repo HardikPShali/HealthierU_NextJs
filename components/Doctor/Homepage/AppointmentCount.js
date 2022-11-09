@@ -29,7 +29,7 @@ const AppointmentCount = () => {
                 <div className={styles.data_card}>
                     <div className={styles.data_card__helper}>
                         <h3 className={styles.appointment_count_h3}>{appointmentsCount.totalAppointmentsForTheDay}</h3>
-                        <h4 className={styles.appointment_count_h4}>Today's Appointments</h4>
+                        <h4 className={styles.appointment_count_h4}>Today&apos;s Appointments</h4>
                     </div>
                 </div>
                 <div className={styles.data_card1}>

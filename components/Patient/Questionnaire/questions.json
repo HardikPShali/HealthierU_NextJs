@@ -1,0 +1,201 @@
+[
+  {
+    "questionId": 1,
+    "questionTitle": "Do you consider yourself healthy?",
+    "choices": ["No", "Somewhat", "Yes"],
+    "type": "radio",
+    "answers": "",
+    "mapScore": [0, 1, 1],
+    "score": 0
+  },
+  {
+    "questionId": 2,
+    "questionTitle": "Do you eat healthy?",
+    "choices": ["Never", "Occasionally", "Regularly"],
+    "type": "radio",
+    "answers": "",
+    "mapScore": [0, 1, 1],
+    "score": 0
+  },
+  {
+    "questionId": 3,
+    "questionTitle": "Do you exercise?",
+    "choices": [
+      "Never",
+      "Once a week",
+      "2-3 days per week",
+      "4-5 days per week",
+      "6-7 days per week"
+    ],
+    "type": "radio",
+    "answers": "",
+    "mapScore": [0, 0, 1, 1, 2],
+    "score": 0
+  },
+  {
+    "questionId": 4,
+    "questionTitle": "What type of exercise do you do?",
+    "choices": ["Cardio (running, biking, HIIT)", "Weights"],
+    "type": "checkbox",
+    "answers": [],
+    "mapScore": [0, 0],
+    "score": 0,
+    "condition": {
+      "questionId": 3,
+      "answer": "Never"
+    },
+    "hidden": true
+  },
+  {
+    "questionId": 5,
+    "questionTitle": "How long is each session (in minutes)?",
+    "choices": ["0-15", "15-30", "30-60", "60-90", "90-120", ">120"],
+    "type": "radio",
+    "answers": "",
+    "mapScore": [0, 0, 0, 0, 0, 0],
+    "score": 0,
+    "condition": {
+      "questionId": 3,
+      "answer": "Never"
+    },
+    "hidden": true
+  },
+  {
+    "questionId": 6,
+    "questionTitle": "Do you have any chronic illnesses?",
+    "choices": [
+      "None",
+      "Obesity",
+      "Heart Disease",
+      "Hypertension",
+      "Blood Diseases",
+      "Cancer",
+      "Diabetes",
+      "Thyroid disease",
+      "Neurological disease",
+      "Kidney disease/Urinary tract disease",
+      "Rheumatological disease",
+      "Psychological condition",
+      "Allergies",
+      "Peripheral arterial disease",
+      "Gastrointestinal",
+      "Gynaecological disease",
+      "Sexual dysfunction"
+    ],
+    "type": "checkbox",
+    "answers": [],
+    "mapScore": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "score": 0
+  },
+  {
+    "questionId": 7,
+    "questionTitle": "Do you smoke?",
+    "choices": ["Never", "Occasionally", "Regularly", "Ex-Smoker"],
+    "type": "radio",
+    "answers": "",
+    "mapScore": [2, 0, 0, 1],
+    "score": 0
+  },
+  {
+    "questionId": 8,
+    "questionTitle": "What do you smoke?",
+    "choices": [
+      "Cigars",
+      "Cigarettes",
+      "E-cigarettes",
+      "Pipe",
+      "Shisha/Hookah",
+      "Vape"
+    ],
+    "type": "checkbox",
+    "answers": [],
+    "mapScore": [0, 0, 0, 0, 0, 0],
+    "score": 0,
+    "condition": {
+      "questionId": 7,
+      "answer": "Never"
+    },
+    "hidden": true
+  },
+  {
+    "questionId": 12,
+    "questionTitle": "If yes, how much do you smoke per week?",
+    "type": "text",
+    "answers": "",
+    "choices": [],
+    "mapScore": [0],
+    "score": 0,
+    "condition": {
+      "questionId": 7,
+      "answer": "Never"
+    },
+    "hidden": true
+  },
+  {
+    "questionId": 13,
+    "questionTitle": "How long have you been smoking (in months)?",
+    "type": "text",
+    "answers": "",
+    "choices": [],
+    "mapScore": [0],
+    "score": 0,
+    "condition": {
+      "questionId": 7,
+      "answer": "Never"
+    },
+    "hidden": true
+  },
+  {
+    "questionId": 9,
+    "questionTitle": "Do you drink alcohol?",
+    "choices": ["No", "Occasionally", "Regularly"],
+    "type": "radio",
+    "answers": "",
+    "mapScore": [2, 0, 0],
+    "score": 0
+  },
+  {
+    "questionId": 14,
+    "questionTitle": "If yes, how much do you drink per week?",
+    "type": "text",
+    "answers": "",
+    "choices": [],
+    "mapScore": [0],
+    "score": 0,
+    "condition": {
+      "questionId": 9,
+      "answer": "No"
+    },
+    "hidden": true
+  },
+  {
+    "questionId": 10,
+    "questionTitle": "How long have you been drinking (in months)?",
+    "type": "text",
+    "answers": "",
+    "choices": [],
+    "mapScore": [0],
+    "score": 0,
+    "condition": {
+      "questionId": 9,
+      "answer": "No"
+    },
+    "hidden": true
+  },
+  {
+    "questionId": 11,
+    "questionTitle": "Do any of your family members suffer from the following? (Premature history of coronary heart disease or heart events, Diabetes, Lipid/Cholesterol disorders, Essesntial Hypertension, Stroke)",
+    "choices": [
+      "None",
+      "Mother",
+      "Father",
+      "Parental or maternal grandmother or grandfather",
+      "Sibling",
+      "Parental or maternal aunt or uncle"
+    ],
+    "type": "checkbox",
+    "answers": [],
+    "mapScore": [1, 0, 0, 0, 0, 0],
+    "score": 0
+  }
+]
