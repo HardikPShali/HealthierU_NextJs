@@ -8,22 +8,26 @@ import Badge from '@mui/material/Badge';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout, selectUser } from '../../../lib/redux/userSlice';
+import { logout, selectRole, selectUser } from '../../../lib/redux/userSlice';
 import { useState, useEffect } from 'react';
 import {
   getUnreadNotificationsCount,
   putMarkAsReadNotification,
 } from '../../../lib/service/FrontendApiServices';
-import styles from './PatientHeader.module.css';
+import styles from './ModuleHeader.module.css';
 import cls from 'classnames';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import NotificationMenuPatient from '../NotificationsMenu/NotificationsMenuPatient';
+import NotificationsMenu from '../NotificationsMenu/NotificationsMenu';
+import useRole from '../../../lib/custom-hooks/useRole';
 
-const PatientHeader = () => {
+const ModuleHeader = () => {
   const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
+  const role = useSelector(selectRole);
   const currentUser = user?.profileDetails;
+
+  const roleName = useRole(role);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorElMyPortal, setAnchorElMyPortal] = useState(null);
@@ -128,6 +132,7 @@ const PatientHeader = () => {
                           <li>
                             <Link href="/patient">Home</Link>
                           </li>
+
                           <li>
                             <Link
                               href="#"
@@ -150,36 +155,64 @@ const PatientHeader = () => {
                               className="profile-menu"
                             >
                               <div onClick={handleClose}>
-                                <Link
-                                  href="/patient/mydoctor"
-                                  className="dropdown-item"
-                                >
-                                  <MenuItem>My Doctors</MenuItem>
-                                </Link>
-                                <Link
-                                  href="/patient/myappointment"
-                                  className="dropdown-item"
-                                >
-                                  <MenuItem>My Appointments</MenuItem>
-                                </Link>
-                                <Link
-                                  href="/patient/document"
-                                  className="dropdown-item"
-                                >
-                                  <MenuItem>My Records</MenuItem>
-                                </Link>
-                                <Link
-                                  href="/patient/health-assessment"
-                                  className="dropdown-item"
-                                >
-                                  <MenuItem>Health Assessment Report</MenuItem>
-                                </Link>
-                                <Link
-                                  href="/patient/chat"
-                                  className="dropdown-item"
-                                >
-                                  <MenuItem>Chat</MenuItem>
-                                </Link>
+                                {roleName === 'patient' && (
+                                  <>
+                                    <Link
+                                      href="/patient/mydoctor"
+                                      className="dropdown-item"
+                                    >
+                                      <MenuItem>My Doctors</MenuItem>
+                                    </Link>
+                                    <Link
+                                      href="/patient/my-appointment"
+                                      className="dropdown-item"
+                                    >
+                                      <MenuItem>My Appointments</MenuItem>
+                                    </Link>
+                                    <Link
+                                      href="/patient/document"
+                                      className="dropdown-item"
+                                    >
+                                      <MenuItem>My Records</MenuItem>
+                                    </Link>
+                                    <Link
+                                      href="/patient/health-assessment"
+                                      className="dropdown-item"
+                                    >
+                                      <MenuItem>
+                                        Health Assessment Report
+                                      </MenuItem>
+                                    </Link>
+                                    <Link
+                                      href="/patient/chat"
+                                      className="dropdown-item"
+                                    >
+                                      <MenuItem>Chat</MenuItem>
+                                    </Link>
+                                  </>
+                                )}
+                                {roleName === 'doctor' && (
+                                  <>
+                                    <Link
+                                      href="/doctor/appointment"
+                                      className="dropdown-item"
+                                    >
+                                      <MenuItem>My Calendar</MenuItem>
+                                    </Link>
+                                    <Link
+                                      href="/doctor/my-patients"
+                                      className="dropdown-item"
+                                    >
+                                      <MenuItem>My Patients</MenuItem>
+                                    </Link>
+                                    <Link
+                                      href="/doctor/chat"
+                                      className="dropdown-item"
+                                    >
+                                      <MenuItem>Chat</MenuItem>
+                                    </Link>
+                                  </>
+                                )}
                               </div>
                             </Menu>
                           </li>
@@ -197,11 +230,11 @@ const PatientHeader = () => {
                                   color="inherit"
                                   type="button"
                                   data-toggle="dropdown"
+                                  onClick={handleNotifMenuDropdown}
                                 >
                                   <Badge
                                     badgeContent={badgeCount}
                                     color="secondary"
-                                    onClick={handleNotifMenuDropdown}
                                   >
                                     <NotificationsIcon />
                                   </Badge>
@@ -222,12 +255,13 @@ const PatientHeader = () => {
                                     className={cls(styles.notificationMenu)}
                                     style={{ width: '350px', left: '-160px' }}
                                   >
-                                    <NotificationMenuPatient />
+                                    <NotificationsMenu />
                                   </div>
                                 </Menu>
                               </div>
                             </div>
                           </li>
+
                           <li>
                             <Link href="#">
                               {currentUser?.picture ? (
@@ -264,25 +298,52 @@ const PatientHeader = () => {
                               className="profile-menu"
                             >
                               <div onClick={handleClose}>
-                                <Link
-                                  href="/patient/profile"
-                                  style={{ textDecoration: 'none' }}
-                                >
-                                  <MenuItem>Profile</MenuItem>
-                                </Link>
-                                <Link
-                                  href="/patient/changepassword"
-                                  style={{ textDecoration: 'none' }}
-                                >
-                                  <MenuItem>Change Password</MenuItem>
-                                </Link>
-                                <Link
-                                  href="/"
-                                  onClick={handleLogout}
-                                  style={{ textDecoration: 'none' }}
-                                >
-                                  <MenuItem>Logout</MenuItem>
-                                </Link>
+                                {roleName === 'patient' && (
+                                  <>
+                                    <Link
+                                      href="/patient/profile"
+                                      style={{ textDecoration: 'none' }}
+                                    >
+                                      <MenuItem>Profile</MenuItem>
+                                    </Link>
+                                    <Link
+                                      href="/patient/changepassword"
+                                      style={{ textDecoration: 'none' }}
+                                    >
+                                      <MenuItem>Change Password</MenuItem>
+                                    </Link>
+                                    <Link
+                                      href="/"
+                                      onClick={handleLogout}
+                                      style={{ textDecoration: 'none' }}
+                                    >
+                                      <MenuItem>Logout</MenuItem>
+                                    </Link>
+                                  </>
+                                )}
+                                {roleName === 'doctor' && (
+                                  <>
+                                    <Link
+                                      href="/doctor/profile"
+                                      style={{ textDecoration: 'none' }}
+                                    >
+                                      <MenuItem>Profile</MenuItem>
+                                    </Link>
+                                    <Link
+                                      href="/doctor/changepassword"
+                                      style={{ textDecoration: 'none' }}
+                                    >
+                                      <MenuItem>Change Password</MenuItem>
+                                    </Link>
+                                    <Link
+                                      href="/"
+                                      onClick={handleLogout}
+                                      style={{ textDecoration: 'none' }}
+                                    >
+                                      <MenuItem>Logout</MenuItem>
+                                    </Link>
+                                  </>
+                                )}
                               </div>
                             </Menu>
                           </li>
@@ -336,24 +397,44 @@ const PatientHeader = () => {
               className="profile-menu"
             >
               <div onClick={handleClose}>
-                <Link href="/patient/mydoctor" className="dropdown-item">
-                  <MenuItem>My Doctors</MenuItem>
-                </Link>
-                <Link href="/patient/myappointment" className="dropdown-item">
-                  <MenuItem>My Appointments</MenuItem>
-                </Link>
-                <Link href="/patient/document" className="dropdown-item">
-                  <MenuItem>My Records</MenuItem>
-                </Link>
-                <Link
-                  href="/patient/health-assessment"
-                  className="dropdown-item"
-                >
-                  <MenuItem>Health Assessment Report</MenuItem>
-                </Link>
-                <Link href="/patient/chat" className="dropdown-item">
-                  <MenuItem>Chat</MenuItem>
-                </Link>
+                {roleName === 'patient' && (
+                  <>
+                    <Link href="/patient/mydoctor" className="dropdown-item">
+                      <MenuItem>My Doctors</MenuItem>
+                    </Link>
+                    <Link
+                      href="/patient/my-appointment"
+                      className="dropdown-item"
+                    >
+                      <MenuItem>My Appointments</MenuItem>
+                    </Link>
+                    <Link href="/patient/document" className="dropdown-item">
+                      <MenuItem>My Records</MenuItem>
+                    </Link>
+                    <Link
+                      href="/patient/health-assessment"
+                      className="dropdown-item"
+                    >
+                      <MenuItem>Health Assessment Report</MenuItem>
+                    </Link>
+                    <Link href="/patient/chat" className="dropdown-item">
+                      <MenuItem>Chat</MenuItem>
+                    </Link>
+                  </>
+                )}
+                {roleName === 'doctor' && (
+                  <>
+                    <Link href="/doctor/appointment" className="dropdown-item">
+                      <MenuItem>My Calendar</MenuItem>
+                    </Link>
+                    <Link href="/doctor/my-patients" className="dropdown-item">
+                      <MenuItem>My Patients</MenuItem>
+                    </Link>
+                    <Link href="/doctor/chat" className="dropdown-item">
+                      <MenuItem>Chat</MenuItem>
+                    </Link>
+                  </>
+                )}
               </div>
             </Menu>
           </li>
@@ -368,12 +449,9 @@ const PatientHeader = () => {
                   color="inherit"
                   type="button"
                   data-toggle="dropdown"
+                  onClick={handleNotifMenuDropdown}
                 >
-                  <Badge
-                    badgeContent={badgeCount}
-                    color="secondary"
-                    onClick={handleNotifMenuDropdown}
-                  >
+                  <Badge badgeContent={badgeCount} color="secondary">
                     <NotificationsIcon />
                   </Badge>
                 </IconButton>
@@ -393,7 +471,7 @@ const PatientHeader = () => {
                     className={cls(styles.notificationMenu)}
                     style={{ width: '350px', left: '-160px' }}
                   >
-                    <NotificationMenuPatient />
+                    <NotificationsMenu />
                   </div>
                 </Menu>
               </div>
@@ -435,25 +513,52 @@ const PatientHeader = () => {
               className="profile-menu"
             >
               <div onClick={handleClose}>
-                <Link
-                  href="/patient/profile"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <MenuItem>Profile</MenuItem>
-                </Link>
-                <Link
-                  href="/patient/changepassword"
-                  style={{ textDecoration: 'none' }}
-                >
-                  <MenuItem>Change Password</MenuItem>
-                </Link>
-                <Link
-                  href="/"
-                  onClick={handleLogout}
-                  style={{ textDecoration: 'none' }}
-                >
-                  <MenuItem>Logout</MenuItem>
-                </Link>
+                {roleName === 'patient' && (
+                  <>
+                    <Link
+                      href="/patient/profile"
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <MenuItem>Profile</MenuItem>
+                    </Link>
+                    <Link
+                      href="/patient/changepassword"
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <MenuItem>Change Password</MenuItem>
+                    </Link>
+                    <Link
+                      href="/"
+                      onClick={handleLogout}
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <MenuItem>Logout</MenuItem>
+                    </Link>
+                  </>
+                )}
+                {roleName === 'doctor' && (
+                  <>
+                    <Link
+                      href="/doctor/profile"
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <MenuItem>Profile</MenuItem>
+                    </Link>
+                    <Link
+                      href="/doctor/changepassword"
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <MenuItem>Change Password</MenuItem>
+                    </Link>
+                    <Link
+                      href="/"
+                      onClick={handleLogout}
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <MenuItem>Logout</MenuItem>
+                    </Link>
+                  </>
+                )}
               </div>
             </Menu>
           </li>
@@ -463,4 +568,4 @@ const PatientHeader = () => {
   );
 };
 
-export default PatientHeader;
+export default ModuleHeader;

@@ -6,7 +6,7 @@ import {
     getUnreadNotificationsCount,
     putMarkAsReadFromNotificationMenu,
 } from '../../../../lib/service/FrontendApiServices';
-import styles from '../NotificationsMenu.module.css'
+import styles from '../NotificationsMenuPatient.module.css'
 
 const MedicalRecordsNotification = ({
     notification,
@@ -48,9 +48,9 @@ const MedicalRecordsNotification = ({
                     onClick={() => markAsReadFromNotificationMenuHandler()}
                 >
                     <div className={styles.notifSection}>
-                        <div className="profile-img col-md-3">
-                            {notification?.data?.appointmentDetails?.doctor?.picture &&
-                                notification?.data?.appointmentDetails?.doctor?.picture !==
+                        <div className={styles.profileImage}>
+                            {notification.data?.appointmentDetails?.doctor?.picture &&
+                                notification.data?.appointmentDetails?.doctor?.picture !==
                                 null ? (
                                 <Image
                                     alt="profile"
@@ -64,7 +64,7 @@ const MedicalRecordsNotification = ({
                             ) : (
                                 <Image
                                     alt="profile"
-                                    src="/images/svg/right-icon.svg"
+                                    src='/images/default_image.jpg'
                                     style={{
                                         borderRadius: '50%',
                                     }}

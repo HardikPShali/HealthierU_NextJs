@@ -20,8 +20,8 @@ import { toast } from 'react-toastify';
 import Cookies from 'universal-cookie';
 import LocalStorageService from '../../lib/utils/LocalStorageService';
 import GoogleSignInButton from './GoogleSignInButton';
-import { useDispatch, useSelector } from 'react-redux';
-import { login, logout } from '../../lib/redux/userSlice';
+import { useDispatch } from 'react-redux';
+import { login, role } from '../../lib/redux/userSlice';
 import TransparentLoader from '../Common/Loader/TransparentLoader';
 import Loader from '../Common/Loader/Loader';
 import { CustomTextField } from '../Common/Reusable/TextField/CustomTextField';
@@ -110,6 +110,8 @@ const Signin = () => {
       })
     );
 
+    dispatch(role(currentUserInformation.data.userInfo.authorities[0]));
+
     if (
       authorities.some((user) => user === 'ROLE_ADMIN' || user === 'ROLE_USER')
     ) {
@@ -153,7 +155,7 @@ const Signin = () => {
       setPasswordError(true);
     }
 
-    if (email.length > 30) {
+    if (email.length > 50) {
       setEmailLengthError(true);
       return false;
     }
@@ -273,7 +275,6 @@ const Signin = () => {
     <div>
       {loading && <Loader />}
       {loader && <TransparentLoader />}
-      <Header hideButton={true} />
       <div id="signin-bg" className={styles.signinBg}>
         <Container>
           <Row>
@@ -309,7 +310,7 @@ const Signin = () => {
                       emailError
                         ? 'Please enter a valid email'
                         : emailLengthError
-                        ? 'Email should not be greater than 30 characters'
+                        ? 'Email should not be greater than 50 characters'
                         : ''
                     }
                   />

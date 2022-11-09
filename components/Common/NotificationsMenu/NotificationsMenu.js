@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import AcceptedAppointmentsNotification from './NotificationTypes/AcceptedAppointmentsNotification';
 import AppointmentExpiredNotification from './NotificationTypes/AppointmentExpiredNotification';
-import CancelledByDoctorNotifications from './NotificationTypes/CancelledByDoctorNotifications';
+import AppointmentCancelledNotifications from './NotificationTypes/AppointmentCancelledNotifications';
 // import NextAppointmentNotifications from './NotificationTypes/NextAppointmentNotifications';
 import RescheduleByDoctorNotification from './NotificationTypes/RescheduleByDoctorNotification';
 import RescheduleFromPatientNotification from './NotificationTypes/RescheduleFromPatientNotification';
@@ -12,13 +12,14 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../../lib/redux/userSlice';
 import { pushNotificationsApi } from '../../../lib/service/FrontendApiServices';
 
-const NotificationMenu = () => {
+const NotificationsMenu = () => {
 
     const user = useSelector(selectUser)
+
     const [notificationsData, setNotificationsData] = useState([]);
-    const role = user?.currentUser?.authorities
+
     const getPushNotifications = async () => {
-        const userId = user?.profileDetails.userId;
+        const userId = user.profileDetails.userId;
 
         const response = await pushNotificationsApi(
             userId,
@@ -37,6 +38,7 @@ const NotificationMenu = () => {
         const interval = setInterval(() => {
             getPushNotifications();
         }, 30000)
+
         return () => clearInterval(interval);
     }, []);
 
@@ -88,16 +90,15 @@ const NotificationMenu = () => {
                                             notification={notification}
                                             index={index}
                                             createdAtDisplayStyle={createdAtDisplayStyle}
-                                            role={role}
                                         />
                                     </div>
                                 );
                             }
 
-                            if (notification.type === 'APPT_CANCELLED_BY_DOCTOR') {
+                            if (notification.type === 'APPT_CANCELLED_BY_DOCTOR' || notification.type === 'APPT_CANCELLED_BY_PATIENT') {
                                 return (
                                     <div key={index}>
-                                        <CancelledByDoctorNotifications
+                                        <AppointmentCancelledNotifications
                                             notification={notification}
                                             index={index}
                                             createdAtDisplayStyle={createdAtDisplayStyle}
@@ -109,7 +110,7 @@ const NotificationMenu = () => {
                             if (notification.type === 'APPT_CANCELLED_BY_DOCTOR_TOGGLE') {
                                 return (
                                     <div key={index}>
-                                        <CancelledByDoctorNotifications
+                                        <AppointmentCancelledNotifications
                                             notification={notification}
                                             index={index}
                                             createdAtDisplayStyle={createdAtDisplayStyle}
@@ -125,7 +126,6 @@ const NotificationMenu = () => {
                                             notification={notification}
                                             index={index}
                                             createdAtDisplayStyle={createdAtDisplayStyle}
-                                            role={role}
                                         />
                                     </div>
                                 );
@@ -149,7 +149,6 @@ const NotificationMenu = () => {
                                             notification={notification}
                                             index={index}
                                             createdAtDisplayStyle={createdAtDisplayStyle}
-                                            role={role}
                                         />
                                     </div>
                                 );
@@ -163,7 +162,6 @@ const NotificationMenu = () => {
                                             index={index}
                                             createdAtDisplayStyle={createdAtDisplayStyle}
                                             defaultTabKey={"prescription"}
-                                            role={role}
                                         />
                                     </div>
                                 );
@@ -193,4 +191,4 @@ const NotificationMenu = () => {
     );
 };
 
-export default NotificationMenu;
+export default NotificationsMenu;
