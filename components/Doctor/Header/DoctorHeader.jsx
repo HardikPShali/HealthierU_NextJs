@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navbar, Container, NavLink } from 'react-bootstrap'; //NavDropdown, Row, Col, Nav
 import Image from 'next/image';
-import styles from '../../Patient/Header/PatientHeader.module.css';
+import styles from '../../Common/ModuleHeader/ModuleHeader.module.css';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';

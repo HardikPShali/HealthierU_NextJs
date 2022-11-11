@@ -113,7 +113,7 @@ const ModuleHeader = () => {
         >
           <div className={styles.web_navigation_main}>
             <Container className={styles.web_navigation_content}>
-              <Link href="/patient">
+              <Link href={roleName === 'patient' ? "/patient" : "/doctor"}>
                 <Image
                   className="header_logo-image"
                   src="/images/logo/logo-with-quote.png"
@@ -130,7 +130,7 @@ const ModuleHeader = () => {
                       <div className={styles.navMenuContainer}>
                         <ul className={styles.navMenuUl}>
                           <li>
-                            <Link href="/patient">Home</Link>
+                            <Link href={roleName === 'patient' ? "/patient" : "/doctor"}>Home</Link>
                           </li>
 
                           <li>
