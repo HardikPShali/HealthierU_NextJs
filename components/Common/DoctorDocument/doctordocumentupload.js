@@ -5,10 +5,10 @@ import PhoneInput from 'react-phone-input-2';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogActions from '@mui/material/DialogActions';
-//  import CreateIcon from '@mui/icons/Create';
+import CreateIcon from '@mui/icons-material/Create';
 import IconButton from '@mui/material/IconButton';
-//  import VisibilityIcon from '@mui/icons/Visibility';
-//  import DeleteIcon from '@mui/icons/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteIcon from '@mui/icons-material/Delete';
 import DialogContent from '@mui/material/DialogContent';
 import { toast } from 'react-toastify';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
@@ -22,9 +22,9 @@ import {
     getDoctorDocumentUrlForAdmin
 } from "../../../lib/service/FrontendApiServices";
 import TransparentLoader from "../Loader/TransparentLoader";
-// import GetApp from '@mui/icons/GetApp';
-// import CheckCircleIcon from '@mui/icons/CheckCircle';
-// import CancelIcon from '@mui/icons/Cancel';
+import GetApp from '@mui/icons-material/GetApp';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import "../DoctorDocument/pdfViewer.module.css";
@@ -642,18 +642,18 @@ const DoctorDocumentUpload = ({ currentDoctor, isDoctor, setDocumentinfo, setDoc
                                     {isDoctor ? (<>
                                         {doc.documentStatus === "UNAPPROVED" && (<>
                                             <IconButton color="primary" className="mr-2 p-0" onClick={() => handleUpdateClick(doc)}>
-                                            {/* <CreateIcon /> */}
+                                                <CreateIcon />
                                             </IconButton>
                                         </>)}
                                         <IconButton color="primary" className="mr-2 p-0" data-title="View" onClick={() => showDocument(doc)}>
-                                        {/* <VisibilityIcon /> */}
+                                            <VisibilityIcon />
                                         </IconButton>
                                         <IconButton color="primary" className="mr-2 p-0" data-title="Download" onClick={() => downloadDocument(doc)}>
-                                        {/* <GetApp /> */}
+                                            <GetApp />
                                         </IconButton>
                                         {doc.documentStatus === "UNAPPROVED" && (<>
                                             <IconButton color="secondary" className="mr-2 p-0" onClick={() => deleteDocument(doc.id)}>
-                                            {/* <DeleteIcon /> */}
+                                                <DeleteIcon />
                                             </IconButton>
                                         </>)}
                                     </>) : (<>

@@ -8,6 +8,7 @@ import Slider from '@mui/material/Slider'
 import { withStyles } from '@mui/styles'
 import getCroppedImg from './cropImage'
 import { styles } from './styles'
+import Image from 'next/Image'
 import TransparentLoader from '../Loader/TransparentLoader';
 import previewImg from '../../../public/images/default_image.jpg';
 import profileEdit from '../../../public/images/icons used/profile_edit.svg'
@@ -102,7 +103,7 @@ const ImageCropper = (props) => {
             {props.role === 'Doctor' ? <div className='profile-edit-icon-doctor profile-edit-icon-doctor-safari'>
                 <label htmlFor={uniqueId}>
                     <span className="p-image">
-                        <img src={profileEdit} />
+                        <Image src={profileEdit} />
                         {/* <AddAPhotoIcon className="upload-button" /> */}
                         <input id={uniqueId} className="file-upload" type="file" accept="image/*" onChange={e => handleImageChange(e)}
                             variant="filled" onClick={(e) => e.stopPropagation()} />

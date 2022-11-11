@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import Image from 'next/image';
-// import './doctor.css';
+import { useRouter } from 'next/router';
 import { Button } from 'react-bootstrap';
 import { Container, Row, Col, Tabs, Tab } from 'react-bootstrap';
 import Avatar from 'react-avatar';
@@ -20,7 +19,7 @@ import {
   getSpecialityList,
 } from '../../../lib/service/FrontendApiServices';
 import TransparentLoader from '../../Common/Loader/TransparentLoader';
- import DoctorDocumentUpload from '../../Common/DoctorDocument/doctordocumentupload';
+import DoctorDocumentUpload from '../../Common/DoctorDocument/doctordocumentupload';
 import moment from 'moment';
 import calendarIcon from '../../../public/images/svg/calendar-teal.svg';
 import institutionIcon from '../../../public/images/svg/institutionIcon.svg';
@@ -41,14 +40,16 @@ import FormControl from '@mui/material/FormControl';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
- import ImageCropper from '../../Common/ImageCroper/index';
- import ProfileRow from '../../Common/Profile/ProfileRow/ProfileRow';
+import ImageCropper from '../../Common/ImageCroper/index';
+import ProfileRow from '../../Common/Profile/ProfileRow/ProfileRow';
 import { MDBInput } from 'mdbreact';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { selectUser } from '../../../lib/redux/userSlice';
+import { selectUser, editProfile } from '../../../lib/redux/userSlice';
 const profile = () => {
-  const history = useHistory();
+  const router = useRouter();
+  const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const currentDoctor = user?.profileDetails;
   const [documentData, setDocumentData] = useState([]);
@@ -145,6 +146,7 @@ const profile = () => {
   const [licenseNumber, setLicenseNumber] = useState();
   const [certifyingBody, setCertifyingBody] = useState();
   const [referencePhoneNumber, setReferencePhoneNumber] = useState();
+
   //LOAD DOCUMENT LIST
   const loadDoctorDocument = async () => {
     const doctorId = currentDoctor.id;
@@ -157,11 +159,9 @@ const profile = () => {
       );
       setLoading(false);
     } else if (res && res.status === 204) {
-      // setDoctorDocumentData([]);
       setLoading(false);
     }
   };
-  // const { licenseNumber, referencePhoneNumber, certifyingBody } = currentdocumentData ? currentdocumentData : documentData;
   useEffect(() => {
     loadDoctorDocument();
     loadOptions();
@@ -199,6 +199,7 @@ const profile = () => {
     }
   };
   const [updatedExperience, setUpdatedExperience] = useState(experienceWithMonths)
+
   // HANDLERS FOR EDIT PAGE
   const handleInputChange = (e) => {
     if (e.target.name === "experience") {
@@ -275,7 +276,6 @@ const profile = () => {
     } else {
       setCurrentDoctorData({ ...currentDoctorData, dateOfBirth: isoDate });
     }
-    // setCurrentDoctorData({ ...currentDoctorData, dateOfBirth: isoDate });
   };
 
   const handlePhone = (e) => {
@@ -294,14 +294,10 @@ const profile = () => {
         specialities.push(e);
       }
     });
-    // specialities.push({ id: selectedItem.id, name: selectedItem.name });
     setSpecialityError(false);
   };
 
   const removeSpecialities = (removedItem) => {
-    // var array = specialities;
-    // var index = array.findIndex(removedItem); // Let's say it's Bob.
-    // array.splice(index, 1);
     setCurrentDoctorData({ ...currentDoctorData, specialities: removedItem });
   };
 
@@ -325,11 +321,8 @@ const profile = () => {
       documentInfo.certifyingBody &&
       documentInfo.referencePhoneNumber
     ) {
-      const user = cookies.get('profileDetails');
       const info = {
-        doctorId: user.id,
-        //doctor_email: user.email,
-        // documentName: documentName,
+        doctorId: currentDoctor.id,
         licenseNumber: documentInfo.licenseNumber,
         referencePhoneNumber: documentInfo.referencePhoneNumber,
         certifyingBody: documentInfo.certifyingBody,
@@ -342,11 +335,9 @@ const profile = () => {
         response.status === 200 ||
         (response.status === 201 && res.status === 200)
       ) {
-        cookies.set('profileDetails', response.data.data, {
-          path: '/',
-        });
+        dispatch(editProfile({ profileDetails: response.data.data }))
         toast.success('Profile Data Updated');
-        history.go(`doctor/profile`);
+        router.back()
       }
     } else {
       toast.error(
@@ -362,22 +353,22 @@ const profile = () => {
   const [educationList, setEducationList] = useState([
     { institution: '', educationalQualification: '' },
   ]);
+
   // handle input change
   const handleEducationDetailsInputChange = (e, index) => {
     const { name, value } = e.target;
     const list = [...currentDoctorData.educationalQualifications];
     list[index][name] = value;
-    //setEducationList(list);
     setCurrentDoctorData({
       ...currentDoctorData,
       educationalQualifications: list,
     });
   };
+
   // handle click event of the Remove button
   const handleRemoveClick = (index) => {
     const list = [...currentDoctorData.educationalQualifications];
     list.splice(index, 1);
-    //setEducationList(list);
     setCurrentDoctorData({
       ...currentDoctorData,
       educationalQualifications: list,
@@ -402,7 +393,7 @@ const profile = () => {
             <Col md={3}>
               <div id="profile-col-1">
                 {currentDoctor && currentDoctor.picture ? (
-                  <Image src={currentDoctor.picture} id="profile-pic" alt="" 
+                  <Image src={currentDoctor.picture} id="profile-pic" alt=""
                     width={150}
                     height={150}
                   />
@@ -425,7 +416,6 @@ const profile = () => {
                   <button
                     className="btn btn-primary request-edit"
                     onClick={() => {
-                      // setDisplay({ ...display, profile: 'none', editProfile: 'block' })
                       setToggleProfile({ ...toggleProfile, editProfile: true });
                     }}
                   >
@@ -527,7 +517,6 @@ const profile = () => {
                                   )
                                 )
                               }
-                            //value={currentDoctor.education}
                             />{' '}
                             <ProfileRow
                               icon={institutionIcon}
@@ -543,7 +532,6 @@ const profile = () => {
                                   )
                                 )
                               }
-                            //value={currentDoctor.education}
                             />
                             <ProfileRow
                               icon={experienceIcon}
@@ -567,12 +555,6 @@ const profile = () => {
                         </div>
                       </Tab>
                     </Tabs>
-                    {/* <div style={{ marginTop: '10px' }}>
-                                            <DoctorDocumentUpload
-                                                currentDoctor={currentDoctor}
-                                                isDoctor={true}
-                                            />
-                                        </div> */}
                   </div>
                 </Col>
               </Row>
@@ -633,17 +615,12 @@ const profile = () => {
                               />
                             </Col>
                             <Col md={6}>
-                              {/* <p>
-                                                            Last Name<sup>*</sup>
-                                                        </p> */}
                               <TextValidator
                                 id="standard-basic"
                                 type="text"
                                 name="lastName"
                                 onChange={(e) => handleInputChange(e)}
                                 value={lastName}
-                                // validators={["required", "matchRegexp:^[a-zA-Z ]+$"]}
-                                // errorMessages={["This field is required", "Last Name cannot have any numeric values"]}
                                 variant="filled"
                                 style={{ display: 'none' }}
                               />
@@ -653,18 +630,6 @@ const profile = () => {
                           <Row>
                             <Col md={12}>
                               <p>About</p>
-                              {/* <textarea
-                                                            id="standard-basic"
-                                                            type="text"
-                                                            name="bio"
-                                                            onChange={(e) => handleInputChange(e)}
-                                                            value={bio}
-
-                                                            variant="filled"
-                                                            rowsMax={4}
-                                                            cols={50}
-                                                        ></textarea> */}
-
                               <MDBInput
                                 type="textarea"
                                 rows="5"
@@ -715,9 +680,7 @@ const profile = () => {
                             </Col>
                           </Row>
                           <br />
-
                           <br />
-
                           <Row>
                             <Col md={6}>
                               <p>Nationality</p>
@@ -948,7 +911,6 @@ const profile = () => {
                       <button
                         className="btn btn-primary continue-btn-profile-doctor"
                         onClick={() => {
-                          // setDisplay({ ...display, profile: 'block', editProfile: 'none' })
                           setToggleProfile({
                             ...toggleProfile,
                             editProfile: false,
