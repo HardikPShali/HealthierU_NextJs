@@ -337,7 +337,11 @@ const profile = () => {
       ) {
         dispatch(editProfile({ profileDetails: response.data.data }))
         toast.success('Profile Data Updated');
-        router.back()
+        setToggleProfile({
+          ...toggleProfile,
+          editProfile: false,
+        });
+        // router.back()
       }
     } else {
       toast.error(
