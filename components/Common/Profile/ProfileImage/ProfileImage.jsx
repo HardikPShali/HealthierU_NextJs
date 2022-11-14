@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import './ProfileImage.css';
+import styles from './ProfileImage.module.css';
+import cls from 'classnames';
 
 const ProfileImage = ({ currentPatient, onEdit }) => {
   return (

@@ -328,7 +328,7 @@ const Profile = () => {
         response.status === 200 ||
         (response.status === 201 && res.status === 200)
       ) {
-        dispatch(editProfile({ profileDetails: response.data.data }));
+        dispatch(editProfile({ ...user, profileDetails: response.data.data }));
         toast.success('Profile Data Updated');
         router.back();
       }

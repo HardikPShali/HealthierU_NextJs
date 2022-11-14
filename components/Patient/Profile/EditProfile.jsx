@@ -8,20 +8,30 @@ import { CustomSelectField } from '../../Common/Reusable/SelectField/CustomSelec
 import {
   getCountryList,
   getLanguageList,
+  updatePatientData,
 } from '../../../lib/service/FrontendApiServices';
 import { CustomMultiSelectField } from '../../Common/Reusable/SelectField/CustomMultiSelectField';
-import { useDispatch } from 'react-redux';
-import { updateProfile } from '../../../lib/redux/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { editProfile, selectUser } from '../../../lib/redux/userSlice';
+import ImageCropper from '../../Common/ImageCroper/index';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 const EditProfile = ({ currentPatient, toggleProfile, goBack }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
+
+  const user = useSelector(selectUser);
 
   const [currentPatientDetails, setCurrentPatientDetails] =
     useState(currentPatient);
 
+  const [profilePicture, setProfilePicture] = useState({});
+
   const {
     firstName,
     lastName = '',
+    picture,
     address,
     phone,
     dateOfBirth,
@@ -113,10 +123,11 @@ const EditProfile = ({ currentPatient, toggleProfile, goBack }) => {
     });
   };
 
-  const handleLanguages = (selectedList, selectedItem) => {
+  const handleLanguages = (e) => {
     // e.preventDefault()
-    // languages.push({ name: selectedItem.name });
-    console.log(selectedItem);
+    // const eTargetValue = e.target.value;
+    // // const pushedValues = languages.push({ name: e.target.value });
+    // console.log({ eTargetValue: eTargetValue(eTargetValue) });
   };
 
   const now = new Date();
@@ -130,7 +141,7 @@ const EditProfile = ({ currentPatient, toggleProfile, goBack }) => {
     // setTransparentLoading(true);
     e.preventDefault();
     var bodyFormData = new FormData();
-    const reqData = { ...currentPatient };
+    const reqData = { ...currentPatientDetails };
     reqData.lastName = '';
     bodyFormData.append('profileData', JSON.stringify(reqData));
     bodyFormData.append('profilePicture', profilePicture);
@@ -141,12 +152,12 @@ const EditProfile = ({ currentPatient, toggleProfile, goBack }) => {
       }
     });
     if (response.status === 200 || response.status === 201) {
-      dispatch(updateProfile(response.data));
+      dispatch(editProfile({ ...user, profileDetails: response.data }));
 
       toast.success('Profile updated successfully');
 
       setTimeout(() => {
-        history.go(0);
+        goBack();
       }, 1000);
     }
   };
@@ -166,6 +177,13 @@ const EditProfile = ({ currentPatient, toggleProfile, goBack }) => {
               <h3>Edit Profile</h3>
               <div>
                 <h5>General</h5>
+                <Row>
+                  <ImageCropper
+                    setProfilePicture={setProfilePicture}
+                    imageUrl={picture}
+                    role={'Patient'}
+                  />
+                </Row>
                 <Row>
                   <Col md={12}>
                     <CustomTextField
@@ -229,6 +247,7 @@ const EditProfile = ({ currentPatient, toggleProfile, goBack }) => {
                         { value: 'MALE', label: 'Male' },
                         { value: 'FEMALE', label: 'Female' },
                       ]}
+                      onChange={(e) => handleInputChange(e)}
                       value={gender}
                       name="gender"
                       style={{
@@ -390,7 +409,7 @@ const EditProfile = ({ currentPatient, toggleProfile, goBack }) => {
                 <button
                   className="btn btn-primary continue-btn-profile"
                   type="button"
-                  onClick={handleDetails}
+                  onClick={(e) => handleDetails(e)}
                 >
                   Update Profile
                 </button>
