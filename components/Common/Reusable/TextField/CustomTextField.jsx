@@ -6,7 +6,7 @@ export const CustomTextField = ({ ...otherProps }) => {
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 0, width: '100%' },
+        '& > :not(style)': { m: 1, width: '100%' },
       }}
       noValidate
       autoComplete="off"
