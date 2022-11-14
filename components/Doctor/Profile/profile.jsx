@@ -47,7 +47,7 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { selectUser, editProfile } from '../../../lib/redux/userSlice';
-const profile = () => {
+const Profile = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
@@ -198,45 +198,40 @@ const profile = () => {
       setUploadOpen(false);
     }
   };
-  const [updatedExperience, setUpdatedExperience] = useState(experienceWithMonths)
+  const [updatedExperience, setUpdatedExperience] =
+    useState(experienceWithMonths);
 
   // HANDLERS FOR EDIT PAGE
   const handleInputChange = (e) => {
-    if (e.target.name === "experience") {
-      const experienceValue = e.target.value
-      const convertedValue = experienceValue.split('.')
+    if (e.target.name === 'experience') {
+      const experienceValue = e.target.value;
+      const convertedValue = experienceValue.split('.');
       if (convertedValue[1]) {
         if (convertedValue[1] > 0 && convertedValue[1] <= 11) {
           setCurrentDoctorData({
             ...currentDoctorData,
             [e.target.name]: e.target.value,
-
           });
-          setUpdatedExperience(e.target.value)
+          setUpdatedExperience(e.target.value);
+        } else {
+          setUpdatedExperience(experienceWithMonths);
+          toast.error('Please enter valid experience', {
+            toastId: 'experienceValue',
+          });
         }
-        else {
-          setUpdatedExperience(experienceWithMonths)
-          toast.error("Please enter valid experience", {
-            toastId: 'experienceValue'
-          })
-        }
-      }
-      else {
+      } else {
         setCurrentDoctorData({
           ...currentDoctorData,
           [e.target.name]: e.target.value,
-
         });
-        setUpdatedExperience(e.target.value)
+        setUpdatedExperience(e.target.value);
       }
     } else {
       setCurrentDoctorData({
         ...currentDoctorData,
         [e.target.name]: e.target.value,
-
       });
     }
-
   };
   const handleLanguages = (selectedItem) => {
     selectedItem.forEach((e) => {
@@ -258,9 +253,7 @@ const profile = () => {
   const newDate = now.setDate(now.getDate() - 1);
   const maxDate = {
     max: moment(newDate).format('YYYY-MM-DD'),
-    min: moment(now)
-      .subtract(120, 'years')
-      .format('YYYY-MM-DD'),
+    min: moment(now).subtract(120, 'years').format('YYYY-MM-DD'),
   };
 
   const handleDateChange = (e) => {
@@ -279,7 +272,7 @@ const profile = () => {
   };
 
   const handlePhone = (e) => {
-    const appendPlus = "+" + e
+    const appendPlus = '+' + e;
     setCurrentDoctorData({ ...currentDoctorData, phone: appendPlus });
   };
 
@@ -335,9 +328,9 @@ const profile = () => {
         response.status === 200 ||
         (response.status === 201 && res.status === 200)
       ) {
-        dispatch(editProfile({ profileDetails: response.data.data }))
+        dispatch(editProfile({ profileDetails: response.data.data }));
         toast.success('Profile Data Updated');
-        router.back()
+        router.back();
       }
     } else {
       toast.error(
@@ -393,7 +386,10 @@ const profile = () => {
             <Col md={3}>
               <div id="profile-col-1">
                 {currentDoctor && currentDoctor.picture ? (
-                  <Image src={currentDoctor.picture} id="profile-pic" alt=""
+                  <Image
+                    src={currentDoctor.picture}
+                    id="profile-pic"
+                    alt=""
                     width={150}
                     height={150}
                   />
@@ -509,7 +505,7 @@ const profile = () => {
                                 currentDoctor.educationalQualifications &&
                                 currentDoctor.educationalQualifications.map(
                                   (edu, index) => (
-                                    <div>
+                                    <div key={index}>
                                       <li key={index}>
                                         {edu.educationalQualification}
                                       </li>
@@ -526,7 +522,7 @@ const profile = () => {
                                 currentDoctor.educationalQualifications &&
                                 currentDoctor.educationalQualifications.map(
                                   (edu, index) => (
-                                    <div>
+                                    <div key={index}>
                                       <li key={index}>{edu.institution}</li>
                                     </div>
                                   )
@@ -829,26 +825,26 @@ const profile = () => {
                                     {currentDoctorData
                                       ?.educationalQualifications.length !==
                                       1 && (
-                                        <Button
-                                          className="medicineRemoveButton"
-                                          variant="secondary"
-                                          onClick={() => handleRemoveClick(i)}
-                                        >
-                                          Remove
-                                        </Button>
-                                      )}
+                                      <Button
+                                        className="medicineRemoveButton"
+                                        variant="secondary"
+                                        onClick={() => handleRemoveClick(i)}
+                                      >
+                                        Remove
+                                      </Button>
+                                    )}
                                     {currentDoctorData
                                       ?.educationalQualifications.length -
                                       1 ===
                                       i && (
-                                        <Button
-                                          className="medicineButton"
-                                          variant="primary"
-                                          onClick={handleAddClick}
-                                        >
-                                          Add Education
-                                        </Button>
-                                      )}
+                                      <Button
+                                        className="medicineButton"
+                                        variant="primary"
+                                        onClick={handleAddClick}
+                                      >
+                                        Add Education
+                                      </Button>
+                                    )}
                                   </div>
                                 </div>
                               );
@@ -991,7 +987,7 @@ const profile = () => {
         </ValidatorForm>
       </Dialog>
     </div>
-  )
-}
+  );
+};
 
-export default profile
+export default Profile;
