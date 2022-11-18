@@ -17,6 +17,7 @@ import closeBtn from '../../../public/images/svg/close-btn.svg';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../lib/redux/userSlice';
 import { useRouter } from 'next/router';
+import Image from 'next/image'
 const Availability = () => {
   const [value, setValue] = useState([]);
   const [count, setCount] = useState(1);
@@ -531,7 +532,9 @@ const Availability = () => {
                   </label>
                 </div>
                 <div className="close-btn-delete" style={{ marginBottom: '4%' }}>
-                  <img
+                  <Image
+                    width={10}
+                    height={10}
                     src={closeBtn}
                     alt="close button"
                     onClick={() => handleRecurDeleteOpen(eachTimes)}
