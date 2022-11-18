@@ -1,27 +1,36 @@
 import React from 'react';
-import Avatar from 'react-avatar';
-import './ProfileImage.css';
+import Image from 'next/image';
+import styles from './ProfileImage.module.css';
+import cls from 'classnames';
 
 const ProfileImage = ({ currentPatient, onEdit }) => {
   return (
     <div className="d-flex flex-column align-items-center text-center mt-5 mb-3">
       {currentPatient && currentPatient.picture ? (
-        <img src={currentPatient.picture} alt="" id="profile-pic" />
+        <Image
+          src={currentPatient.picture}
+          alt=""
+          id="profile-pic"
+          width={150}
+          height={150}
+        />
       ) : (
-        <Avatar
-          className="avatar-profile"
-          name={currentPatient && currentPatient.firstName}
-          style={{ height: '150px', width: '138px' }}
+        <Image
+          src="/images/default_image.jpg"
+          alt=""
+          id="profile-pic"
+          width={150}
+          height={150}
         />
       )}
       <div className="d-flex flex-column mt-4">
-        <div className="profile-name">
+        <div className={styles.profileName}>
           {currentPatient && currentPatient.firstName}
         </div>
         <p id="description">{currentPatient.email}</p>
         <div className="mt-1">
           <button
-            className="btn btn-primary request-edit"
+            className={cls('btn', 'btn-primary', styles.requestEdit)}
             onClick={() => {
               // setDisplay({ ...display, profile: 'none', editProfile: 'block' })
               onEdit();

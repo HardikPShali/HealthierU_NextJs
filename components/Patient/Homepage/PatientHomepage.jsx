@@ -1,5 +1,4 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import { CustomSelectField } from '../../Common/Reusable/SelectField/CustomSelectField';
 import UpcomingAppointments from '../../Common/UpcomingAppointments/UpcomingAppointments';
 import TakeAssessmentCard from './TakeAssessmentCard/TakeAssessmentCard';
 
