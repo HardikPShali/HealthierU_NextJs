@@ -17,10 +17,10 @@ const UpcomingAppointmentCard = ({ appointment }) => {
 
   const handleClickToAppointmentsPage = () => {
     if (key == 'ROLE_DOCTOR') {
-      router.push(`/doctor/my-appointments?APID=${appointment.id}`);
+      router.push(`/doctor/myappointments?APID=${appointment.id}`);
     }
     else {
-      router.push('/patient/myappointment');
+      router.push('/patient/myappointments');
     }
   };
   return (

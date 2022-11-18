@@ -8,7 +8,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { ValidatorForm } from 'react-material-ui-form-validator';
 import {
   uploadDoctorDocument,
   getDoctorDocument,
@@ -47,6 +47,7 @@ import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { selectUser, editProfile } from '../../../lib/redux/userSlice';
+import { CustomTextField, CustomCheckboxField, CustomRadioField, CustomSelectField } from '../../Common/Reusable/TextField/CustomTextField';
 const profile = () => {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -601,7 +602,7 @@ const profile = () => {
                               <p>
                                 Name<sup>*</sup>
                               </p>
-                              <TextValidator
+                              <CustomTextField
                                 id="standard-basic"
                                 type="text"
                                 name="firstName"
@@ -619,7 +620,7 @@ const profile = () => {
                               />
                             </Col>
                             <Col md={6}>
-                              <TextValidator
+                              <CustomTextField
                                 id="standard-basic"
                                 type="text"
                                 name="lastName"
@@ -653,7 +654,7 @@ const profile = () => {
                           <Row>
                             <Col md={6}>
                               <p>Date of Birth</p>
-                              <TextValidator
+                              <CustomTextField
                                 id="standard-basic"
                                 type="date"
                                 name="dateOfBirth"
@@ -785,7 +786,7 @@ const profile = () => {
                                       <p>
                                         Education<sup>*</sup>
                                       </p>
-                                      <TextValidator
+                                      <CustomTextField
                                         id="standard-basic"
                                         type="text"
                                         name="educationalQualification"
@@ -808,7 +809,7 @@ const profile = () => {
                                       <p>
                                         Institution<sup>*</sup>
                                       </p>
-                                      <TextValidator
+                                      <CustomTextField
                                         id="standard-basic"
                                         type="text"
                                         name="institution"
@@ -862,7 +863,7 @@ const profile = () => {
                           <Row>
                             <Col md={12}>
                               <p>Experience</p>
-                              <TextValidator
+                              <CustomTextField
                                 id="standard-basic"
                                 type="number"
                                 name="experience"
@@ -948,7 +949,7 @@ const profile = () => {
                 <b>Choose Document:</b>
               </Col>
               <Col md={8}>
-                <TextValidator
+                <CustomTextField
                   id="standard-basic"
                   variant="filled"
                   name="doctorDocumentFile"
@@ -967,7 +968,7 @@ const profile = () => {
                 <b>Document Name:</b>
               </Col>
               <Col md={8}>
-                <TextValidator
+                <CustomTextField
                   id="standard-basic"
                   variant="filled"
                   name="documentName"

@@ -1,0 +1,73 @@
+/* UPCOMING APPOINTMENTS SECTION */
+.Questions__card-box {
+  height: 100%;
+  border-radius: 22px;
+  padding: 1.25rem;
+  color: #fff;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  text-shadow: 0px 0px 15px #000;
+  overflow: auto;
+}
+.Questions--main-header {
+  margin-left: 5px;
+  color: #344767;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+.Questions-card-holder {
+  width: 100%;
+}
+
+.Questions-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 22px;
+  filter: drop-shadow(0px 9px 12px rgba(0, 0, 0, 0.08));
+  padding: 28px 25px 28px 33px;
+  margin-top: 20px;
+}
+
+.Questions-card__img-wrapper {
+  padding: 20px;
+  text-align: center;
+}
+
+.img-circle {
+  -webkit-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  box-shadow: 2px 6px 20px -4px rgb(0 0 0 / 74%);
+  -webkit-box-shadow: 2px 6px 20px -4px rgb(0 0 0 / 20%);
+}
+
+.Questions-card__card-details {
+  margin: 12px;
+  color: #3e4543;
+  background: #efefef;
+  padding: 18px;
+  border-radius: 10px;
+}
+
+.Questions-card__question-title {
+  text-shadow: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.Questions-card__question-answer {
+  font-size: 15px;
+  text-decoration: none;
+  text-shadow: none;
+  font-weight: 400;
+}

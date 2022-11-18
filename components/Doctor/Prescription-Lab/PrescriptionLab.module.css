@@ -1,0 +1,224 @@
+.prescription-lab__card-box {
+  border-radius: 22px;
+  color        : #fff;
+  font-weight  : 700 !important;
+  font-size    : 20px !important;
+  text-shadow  : 0px 0px 15px #000;
+  margin-top   : 20px;
+  margin-left  : 10px;
+  margin-bottom: 10px;
+  margin-right : 10px;
+}
+
+/* .prescriptionButtonDIv{
+  display: inline-grid;
+} */
+
+.prescription-lab--main-header {
+  margin-left : 5px;
+  color       : var(--text-primary);
+  font-weight : 700;
+  text-shadow : none;
+  font-size   : 20px;
+  font-family : var(--font-primary);
+  font-style  : normal;
+  font-weight : bold;
+  padding-left: 20px;
+}
+
+.prescription-lab--month-header {
+  color      : var(--text-primary);
+  text-shadow: none;
+  font-size  : 1rem;
+  font-family: var(--font-primary);
+  font-style : normal;
+  font-weight: 400;
+}
+
+.card-holder {
+  width: 100%;
+}
+
+.prescription-lab-card {
+  margin-top      : 10px;
+  width           : 100%;
+  padding         : 20px;
+  position        : relative;
+  display         : flex;
+  flex-direction  : column;
+  min-width       : 0;
+  word-wrap       : break-word;
+  background-color: #fff;
+  background-clip : border-box;
+  border          : 1px solid rgba(0, 0, 0, 0.125);
+  border-radius   : 22px;
+  filter          : drop-shadow(0px 9px 12px rgba(0, 0, 0, 0.08));
+  border-left     : 5px solid var(--primarysecond);
+  transition      : all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.prescription-lab-card:hover {
+  box-shadow : 4px 4px 14px rgba(0, 0, 0, 0.09);
+  transition : all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-left: 12px solid var(--primary);
+}
+
+.prescription-lab-card__img-wrapper {
+  padding      : 20px;
+  text-align   : center;
+  background   : #f9f9f9;
+  border-radius: 8px;
+}
+
+.img-circle {
+  -webkit-border-radius: 50%;
+  -khtml-border-radius : 50%;
+  -moz-border-radius   : 50%;
+  border-radius        : 50%;
+  width                : 70px;
+  height               : 70px;
+}
+
+.prescription-lab-card__card-details {
+  margin: 10px;
+  color : #3e4543;
+}
+
+.prescription-lab-card__common-name {
+  text-shadow   : none;
+  font-family   : var(--font-primary);
+  font-style    : normal;
+  font-weight   : 500;
+  font-size     : 16px;
+  line-height   : 22px;
+  color         : #3e4543;
+  margin-bottom : 2px;
+  text-transform: capitalize;
+}
+
+.prescription-lab-card__common-name1 {
+  text-shadow   : none;
+  font-family   : var(--font-primary);
+  font-style    : normal;
+  font-weight   : 200;
+  font-size     : 1.1rem;
+  line-height   : 22px;
+  color         : #3e4543;
+  margin-bottom : 2px;
+  text-transform: capitalize;
+}
+
+.prescription-lab-card__common-date {
+  text-shadow   : none;
+  font-family   : var(--font-primary);
+  font-style    : normal;
+  font-weight   : 400;
+  font-size     : 1rem;
+  line-height   : 22px;
+  color         : #3e4543;
+  margin-bottom : 2px;
+  text-transform: capitalize;
+}
+
+.prescription-lab-card__common-date1 {
+  text-shadow   : none;
+  font-family   : var(--font-primary);
+  font-style    : normal;
+  font-weight   : 400;
+  font-size     : 1.1rem;
+  line-height   : 22px;
+  color         : #3e4543;
+  margin-bottom : 2px;
+  text-transform: capitalize;
+}
+
+.prescription-lab-card__common-span {
+  font-family    : var(--font-primary);
+  font-style     : normal;
+  font-weight    : 500;
+  font-size      : 12px;
+  line-height    : 16px;
+  text-decoration: none;
+  text-shadow    : none;
+
+  color: #999999;
+}
+
+.prescription-lab-card__common-span1 {
+  font-family    : var(--font-primary);
+  font-style     : normal;
+  font-weight    : 300;
+  font-size      : 1rem;
+  line-height    : 16px;
+  text-decoration: none;
+  text-shadow    : none;
+  color          : #999999;
+}
+
+.prescription-lab-card__specality {
+  color          : var(--text-secondary);
+  font-size      : 12px;
+  text-decoration: none;
+  text-shadow    : none;
+  display        : block;
+  font-weight    : none;
+  margin-left    : 2px;
+}
+
+.prescription-lab-card__card-details--date-div {
+  display    : flex;
+  align-items: center;
+  margin-top : 15px;
+}
+
+.prescription-lab-card-card__card-time-row {}
+
+.prescription-lab-card__card-time-row>img {
+  width       : 28px;
+  height      : 28px;
+  margin-right: 4px;
+}
+
+.prescription-lab-card__download {
+  position     : absolute;
+  background   : #f6f6ef;
+  border-radius: 50%;
+  border       : none;
+  transition   : all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.prescription-lab-card__download:hover {
+  transform : translateY(-2px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: #ebebeb;
+}
+
+.img-download {
+  position: absolute;
+  left    : 32.81%;
+  right   : 32.87%;
+  top     : 28.19%;
+  bottom  : 36.87%;
+
+  /* Style */
+
+  background: #5fccc8;
+}
+
+.img-download1 {
+  position: absolute;
+  left    : 21.73%;
+  right   : 21.75%;
+  top     : 53.06%;
+  bottom  : 28.25%;
+
+  /* Style */
+
+  background: #5fccc8;
+}
+
+@media screen and (max-width: 768px) {
+  .prescription-lab-card__download {
+    position: initial;
+  }
+}
