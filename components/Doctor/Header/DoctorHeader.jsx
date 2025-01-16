@@ -316,7 +316,7 @@ const DoctorHeader = () => {
                 <Link href="/doctor/appointment" className="dropdown-item">
                   <MenuItem>My Calendar</MenuItem>
                 </Link>
-                <Link href="/doctor/my-patients" className="dropdown-item">
+                <Link href="/doctor/mypatients" className="dropdown-item">
                   <MenuItem>My Patients</MenuItem>
                 </Link>
                 <Link href="/doctor/chat" className="dropdown-item">

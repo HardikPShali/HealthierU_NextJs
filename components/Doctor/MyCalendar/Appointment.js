@@ -151,15 +151,15 @@ const Myappointment = (props) => {
   const [selectedAppointment, setSelectedAppointment] = useState();
   const [openAppointmentInfo, setopenAppointmentInfo] = useState(false);
 
-  const handleAppointmentInfoOpen = async (eventData, eventEndTime) => {
-    if (eventEndTime) {
-      eventData.endTime = eventEndTime;
-      setSelectedAppointment(eventData);
-      setopenAppointmentInfo(true);
-    } else {
-      setSelectedAppointment(eventData);
-      setopenAppointmentInfo(true);
-    }
+  const handleAppointmentInfoOpen = async (eventData) => {
+    // if (eventData) {
+    // eventData.endTime = eventEndTime;
+    setSelectedAppointment(eventData);
+    setopenAppointmentInfo(true);
+    // } else {
+    //   setSelectedAppointment(eventData);
+    //   setopenAppointmentInfo(true);
+    // }
     const response = await getPaymentInfoForDoctor(eventData.id).catch(
       (err) => {
         if (err.response.status === 500 || err.response.status === 504) {
@@ -648,7 +648,6 @@ const Myappointment = (props) => {
     }
   };
   const handleSlotInfo = (event) => {
-    console.log("event", event);
     if (event.status === "ACCEPTED") {
       handleAppointmentInfoOpen(event);
       getPaymentInfo(event)
@@ -1258,8 +1257,8 @@ const Myappointment = (props) => {
                   <div className="details-wrapper">
                     <div className="details-content">
                       {selectedAppointment.patient.picture ? (
-                        <Image src={selectedAppointment.patient.picture} alt="" width={150}
-                          height={150} />
+                        <Image src={selectedAppointment.patient.picture} alt="" width={50}
+                          height={50} />
                       ) : (
                         <Avatar
                           name={
@@ -1286,8 +1285,8 @@ const Myappointment = (props) => {
                           <Image
                             src={calendarIcon}
                             className="details-body__appointment-time-row-image"
-                            width={150}
-                            height={150}
+                            width={50}
+                            height={50}
                           />
                           <span className="details-body__common-span">
                             {moment(selectedAppointment.startTime).format(
@@ -1299,8 +1298,8 @@ const Myappointment = (props) => {
                           <Image
                             src={timeBig}
                             className="details-body__appointment-time-row-image"
-                            width={150}
-                            height={150}
+                            width={50}
+                            height={50}
                           />
                           <span className="details-body__common-span">
                             {moment(selectedAppointment.startTime).format(
@@ -1317,8 +1316,8 @@ const Myappointment = (props) => {
                           <Image
                             src={dollarIcon}
                             className="details-body__appointment-time-row-image"
-                            width={150}
-                            height={150}
+                            width={50}
+                            height={50}
                           />
                           <span className="details-body__common-span">{appointment.appointmentFee}</span>
                         </div>
@@ -1326,8 +1325,8 @@ const Myappointment = (props) => {
                           <Image
                             src={creditCardIcon}
                             className="details-body__appointment-time-row-image"
-                            width={150}
-                            height={150}
+                            width={50}
+                            height={50}
                           />
                           <span className="details-body__common-span">
                             {appointment.paymentMethod}
@@ -1346,8 +1345,8 @@ const Myappointment = (props) => {
                         <div className="firefox-helper" style={{ display: "flex", alignItem: "center" }}>
                           <div style={{ width: "100%" }}>
                             <Image
-                              width={150}
-                              height={150}
+                              width={50}
+                              height={50}
                               src={HealthAssessment}
                               alt=""
                               style={{ marginLeft: "5%", marginRight: "5%" }}
@@ -1372,8 +1371,8 @@ const Myappointment = (props) => {
                         <div className="firefox-helper" style={{ display: "flex", alignItem: "center" }}>
                           <div style={{ width: "100%" }}>
                             <Image
-                              width={150}
-                              height={150}
+                              width={50}
+                              height={50}
                               src={MedicalRecord}
                               alt=""
                               style={{ marginLeft: "5%", marginRight: "5%" }}
@@ -1384,16 +1383,16 @@ const Myappointment = (props) => {
                             src={rightIcon}
                             alt="right-icon"
                             style={{ marginRight: "15px" }}
-                            width={150}
-                            height={150}
+                            width={50}
+                            height={50}
                           />
                         </div>
                       </Link>
                       <div style={{ display: "flex", alignItem: "center", cursor: 'pointer' }}>
                         <div style={{ width: "100%" }} onClick={() => openMorePatientInfo()}>
                           <Image
-                            width={150}
-                            height={150}
+                            width={50}
+                            height={50}
                             src={infoIcon}
                             alt=""
                             style={{ marginLeft: "5%", marginRight: "5%" }}
@@ -1404,8 +1403,8 @@ const Myappointment = (props) => {
                           src={rightIcon}
                           alt="right-icon"
                           style={{ marginRight: "15px" }}
-                          width={150}
-                          height={150}
+                          width={50}
+                          height={50}
                         />
                       </div>
                     </div>
